@@ -17,10 +17,17 @@ app.use(express.json());
 
 // ✅ CORS middleware
 // ✅ CORS middleware
-app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:5174'], // allow both frontend URLs
-  credentials: true, // Allow cookies if needed
-}));
+app.use(
+  cors({
+    origin: [
+      'http://localhost:5173',      // local frontend (for development)
+      'http://localhost:5174',      // another local port (optional)
+      'https://school-zeta-ashen.vercel.app' // deployed frontend
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true, // allow cookies if needed
+  })
+);
 
 
 // Test route

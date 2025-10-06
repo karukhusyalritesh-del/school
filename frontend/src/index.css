@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil:opsz,wght@10..72,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Prata&display=swap');
+
+@import "tailwindcss";
+:root {
+  --red: tomato;
+  --bgColor: bisque;
+}
+
+.principal-shadow {
+  box-shadow: -50px -50px 0 -40px var(--red), 50px 50px 0 -40px var(--red);
+}
+body{
+  font-family: "Outfit", sans-serif;
+}

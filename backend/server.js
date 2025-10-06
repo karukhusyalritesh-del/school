@@ -16,18 +16,19 @@ connectDB();
 app.use(express.json());
 
 // ✅ CORS middleware
-// ✅ CORS middleware
 app.use(
   cors({
     origin: [
-      'http://localhost:5173',      // local frontend (for development)
-      'http://localhost:5174',      // another local port (optional)
-      'https://school-zeta-ashen.vercel.app' // deployed frontend
+      'http://localhost:5173',                     // local frontend dev
+      'http://localhost:5174',                     // another local dev port
+      'https://school-zeta-ashen.vercel.app',     // deployed student frontend
+      'https://school-admin-omega.vercel.app'     // deployed admin frontend
     ],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true, // allow cookies if needed
   })
 );
+
 
 
 // Test route

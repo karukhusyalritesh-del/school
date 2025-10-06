@@ -13,19 +13,19 @@ const TeachersSlider = ({ isDarkMode }) => {
     {
       name: "Devendra Yadav",
       role: "Founder",
-      description: "As the head administrator, I am responsible for the overall management and strategic direction of the school. This includes curriculum development, faculty supervision, and student welfare. I work closely with teachers and staff to maintain high academic standards and a nurturing atmosphere that supports both academic achievement and personal growth.",
+      description: "I am the founder of our school. As the founder, my role is to create a warm and inspiring environment where every child can learn, grow, and shine. I guide the vision of the school, support our teachers, and make sure every student feels valued and encouraged. My goal is to build a place where learning is joyful, dreams are nurtured, and every child can reach their full potential.",
       image: viceImg
     },
     {
       name: "Nilam Chaudhary",
       role: "Chairman",
-      description: "As chairman, I preside over board meetings where key decisions are made regarding finances, policies, and the long-term vision of the school. I collaborate closely with the principal and administrative team to ensure that our educational programs align with our mission and meet regulatory standards.",
+      description: "My name is Nilam Chaudhary, and I am the chairman of our school. My role is to guide and support the school’s growth, help make important decisions, and ensure that every student enjoys a safe, happy, and inspiring learning environment. I work to encourage our teachers and staff so that together we can help every child reach their dreams.",
       image: nilamImg
     },
     {
       name: "Topper Student",
       role: "Of School",
-      description: "I am honored to be recognized as the top student at our school, where I have had a tremendously enriching experience. The environment here is conducive to learning, and I have been fortunate to excel academically while also growing personally. One of the most rewarding aspects of my journey has been the supportive and friendly atmosphere fostered by our teachers and staff.",
+      description: "I am a disciplined student in our school. I have won many prizes for being good and following rules. I always try to listen to my teachers, respect my friends, and set a good example. Being disciplined helps me do well in school and become a better person.",
       image: galImg
     }
   ];

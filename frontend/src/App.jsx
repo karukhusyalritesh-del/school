@@ -1,6 +1,6 @@
 // App.jsx
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -17,6 +17,7 @@ import WhyVidyaSchool from "./Components/WhyVidyaSchool";
 import ContactForm from "./Components/ContactForm";
 import Footer from "./Components/Footer";
 import FloatingMenu from "./Components/FloatingMenu";
+import SocialSidebar from "./Components/SocialSidebar";
 
 // Pages
 import NoticePage from "./Pages/Notice";
@@ -29,21 +30,65 @@ import ProtectedRoute from "./Components/ProtectedRoute";
 // Dark Mode Colors
 import darkModeColors from "./Components/DarkMode";
 
-const App = () => {
-  // ✅ Initialize from localStorage
-  const [darkMode, setDarkMode] = useState(() => {
-    return localStorage.getItem("darkMode") === "true";
-  });
+// ✅ Helper component to handle layout logic
+const Layout = ({ darkMode, toggleDarkMode }) => {
+  const location = useLocation();
+  const hideMainNav = location.pathname === "/notice"; // hide on notice page
 
-  // ✅ Toggle dark mode and save preference
+  return (
+    <div className={`${darkMode ? darkModeColors.body : "bg-white text-black"} min-h-screen`}>
+      <FirstNavbar isDarkMode={darkMode} />
+
+      {/* ✅ Only show MainNav if not on /notice */}
+      {!hideMainNav && <MainNav isDarkMode={darkMode} />}
+
+      <ToastContainer />
+
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Hero isDarkMode={darkMode} />
+              <Card isDarkMode={darkMode} />
+              <PrincipleMssg isDarkMode={darkMode} />
+              <Counters isDarkMode={darkMode} />
+              <GalleryQuoteLayout isDarkMode={darkMode} />
+              <TeacherSlider isDarkMode={darkMode} />
+              <WhyVidyaSchool isDarkMode={darkMode} />
+              <ContactForm isDarkMode={darkMode} />
+              <Footer isDarkMode={darkMode} />
+            </>
+          }
+        />
+        <Route path="/login" element={<AuthForm isDarkMode={darkMode} />} />
+        <Route path="/admin" element={<AdminAuth isDarkMode={darkMode} />} />
+        <Route
+          path="/notice"
+          element={
+            <ProtectedRoute>
+              <NoticePage isDarkMode={darkMode} />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+
+      <FloatingMenu onToggleDarkMode={toggleDarkMode} />
+      <SocialSidebar/>
+    </div>
+  );
+};
+
+const App = () => {
+  const [darkMode, setDarkMode] = useState(() => localStorage.getItem("darkMode") === "true");
+
   const toggleDarkMode = () => {
-    setDarkMode(prev => {
+    setDarkMode((prev) => {
       localStorage.setItem("darkMode", !prev);
       return !prev;
     });
   };
 
-  // Optional: add 'dark' class to body for Tailwind utilities
   useEffect(() => {
     if (darkMode) document.body.classList.add("dark");
     else document.body.classList.remove("dark");
@@ -51,51 +96,7 @@ const App = () => {
 
   return (
     <Router>
-      <div className={`${darkMode ? darkModeColors.body : "bg-white text-black"} min-h-screen`}>
-        {/* Global Navbars */}
-        <FirstNavbar isDarkMode={darkMode} />
-        <MainNav isDarkMode={darkMode} />
-
-        {/* Toast notifications */}
-        <ToastContainer />
-
-        {/* Routes */}
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <Hero isDarkMode={darkMode} />
-                <Card isDarkMode={darkMode} />
-                <PrincipleMssg isDarkMode={darkMode} />
-                <Counters isDarkMode={darkMode} />
-                <GalleryQuoteLayout isDarkMode={darkMode} />
-                <TeacherSlider isDarkMode={darkMode} />
-                <WhyVidyaSchool isDarkMode={darkMode} />
-                <ContactForm isDarkMode={darkMode} />
-                <Footer isDarkMode={darkMode} />
-              </>
-            }
-          />
-
-          {/* Login Pages */}
-          <Route path="/login" element={<AuthForm isDarkMode={darkMode} />} />
-          <Route path="/admin" element={<AdminAuth isDarkMode={darkMode} />} />
-
-          {/* Protected Notice Page */}
-          <Route
-            path="/notice"
-            element={
-              <ProtectedRoute>
-                <NoticePage isDarkMode={darkMode} />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
-
-        {/* Floating menu (always visible on every page) */}
-        <FloatingMenu onToggleDarkMode={toggleDarkMode} />
-      </div>
+      <Layout darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
     </Router>
   );
 };

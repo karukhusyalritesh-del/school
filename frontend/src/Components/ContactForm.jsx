@@ -105,7 +105,7 @@ const ContactUs = ({ isDarkMode }) => {
               </div>
               <div>
                 <h3 className={`text-lg font-semibold mb-2 ${isDarkMode ? "text-white" : "text-gray-800"}`}>Email</h3>
-                <p className={`text-lg ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>Vidysinfo@gmail.com</p>
+                <p className={`text-lg ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>Vidyainfo@gmail.com</p>
               </div>
             </div>
 
@@ -133,7 +133,7 @@ const ContactUs = ({ isDarkMode }) => {
               </div>
               <div>
                 <h3 className={`text-lg font-semibold mb-2 ${isDarkMode ? "text-white" : "text-gray-800"}`}>Address</h3>
-                <p className={`text-lg ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>Your school address here</p>
+                <p className={`text-lg ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>Inarwa Phulbariya, Saptari</p>
               </div>
             </div>
           </div>

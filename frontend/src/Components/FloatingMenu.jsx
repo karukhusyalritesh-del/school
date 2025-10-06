@@ -1,17 +1,23 @@
 import React, { useState } from "react";
-import { FaPlus, FaPhoneAlt, FaEnvelope, FaSun } from "react-icons/fa";
+import { FaPlus, FaPhoneAlt, FaEnvelope, FaSun, FaMoon } from "react-icons/fa";
 
 const FloatingMenu = ({ onToggleDarkMode }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isDark, setIsDark] = useState(false); // 🌙 track current mode
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
+
+  const handleDarkModeClick = () => {
+    setIsDark(!isDark); // toggle icon state
+    onToggleDarkMode(); // keep your existing dark mode function
+  };
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
       <div className="relative flex flex-col items-end">
         {/* Floating Buttons */}
         <div
-          className={`absolute bottom-14 right-0 flex flex-col space-y-3 transition-all duration-300 ${
+          className={`absolute bottom-24 right-0 flex flex-col space-y-3 transition-all duration-300 ${
             menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6 pointer-events-none"
           }`}
         >
@@ -29,13 +35,16 @@ const FloatingMenu = ({ onToggleDarkMode }) => {
           >
             <FaEnvelope size={20} />
           </a>
-          <button
-            onClick={onToggleDarkMode}
-            className="w-12 h-12 rounded-full bg-yellow-500 flex items-center justify-center text-white shadow-md hover:scale-110 transition-transform duration-300"
-            title="Toggle Dark Mode"
-          >
-            <FaSun size={20} />
-          </button>
+<button
+  onClick={handleDarkModeClick}
+  className={`w-12 h-12 rounded-full flex items-center justify-center text-white shadow-md hover:scale-110 transition-transform duration-300 ${
+    isDark ? "bg-gray-800" : "bg-yellow-500"
+  }`}
+  title="Toggle Dark Mode"
+>
+  {isDark ? <FaMoon size={20} /> : <FaSun size={20} />}
+</button>
+
         </div>
 
         {/* Main Floating Button */}

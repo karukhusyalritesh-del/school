@@ -107,7 +107,7 @@ const GalleryQuoteLayout = ({ isDarkMode }) => {
           <img
             src={centerImage}
             alt="Center"
-            className={`w-16 h-16 object-contain transition-transform ${shake ? "animate-shake" : ""}`}
+            className={`w-25 h-25 object-contain transition-transform ${shake ? "animate-shake" : ""}`}
           />
         </div>
 

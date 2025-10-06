@@ -11,7 +11,7 @@ const FirstNavbar = ({ isDarkMode }) => {
         <div className="flex items-center space-x-2 sm:space-x-3 lg:space-x-8 text-[10px] sm:text-xs lg:text-[12px] flex-shrink-0">
           <div className="flex items-center space-x-1 sm:space-x-2 whitespace-nowrap">
             <FaPhone className="text-[12px] sm:text-sm lg:text-[15px]" />
-            <span className="text-[10px] sm:text-xs lg:text-[14px]">9821775780 | 9808054226</span>
+            <span className="text-[10px] sm:text-xs lg:text-[14px]">+977 9821775780 | +977 9808054226</span>
           </div>
           <div className="flex items-center space-x-1 sm:space-x-2 whitespace-nowrap">
             <FaEnvelope className="text-[12px] sm:text-sm lg:text-[15px]" />

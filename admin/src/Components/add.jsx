@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { FaPlus } from "react-icons/fa";
+import { FaPlus, FaHome } from "react-icons/fa";
 import axios from "axios";
 import NepaliDate from "nepali-date";
-
-// Make sure your .env has: VITE_BACKEND_URL=http://localhost:3000
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const NoticePage = () => {
@@ -113,11 +111,20 @@ const NoticePage = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 p-6">
+       {/* Home Button - Only this section is added */}
+      <div className="mb-4">
+        <button
+          onClick={() => window.location.href = "https://school-zeta-ashen.vercel.app"}
+          className="flex items-center gap-2 bg-[#263675] text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition cursor-pointer"
+        >
+          <FaHome /> Home
+        </button>
+      </div>
       {/* Top Add Button */}
       <div className="flex justify-center mb-6">
         <button
           onClick={() => setModalOpen(true)}
-          className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-full shadow hover:bg-blue-700 transition"
+          className="flex items-center gap-2 bg-[#263675] text-white px-4 py-2 rounded-full shadow hover:bg-blue-700 transition cursor-pointer"
         >
           <FaPlus /> Add Notice
         </button>

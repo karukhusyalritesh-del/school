@@ -11,23 +11,28 @@ const FirstNavbar = ({ isDarkMode }) => {
         <div className="flex items-center space-x-2 sm:space-x-3 lg:space-x-8 text-[10px] sm:text-xs lg:text-[12px] flex-shrink-0">
           <div className="flex items-center space-x-1 sm:space-x-2 whitespace-nowrap">
             <FaPhone className="text-[12px] sm:text-sm lg:text-[15px]" />
-            <span className="text-[10px] sm:text-xs lg:text-[14px]">+977 9821775780 | +977 9808054226</span>
+            <span className="text-[10px] sm:text-xs lg:text-[14px]">
+              +977 9821775780 | +977 9808054226
+            </span>
           </div>
           <div className="flex items-center space-x-1 sm:space-x-2 whitespace-nowrap">
             <FaEnvelope className="text-[12px] sm:text-sm lg:text-[15px]" />
-            <span className="text-[10px] sm:text-xs lg:text-[15px]">vidyainfo@gmail.com</span>
+            <span className="text-[10px] sm:text-xs lg:text-[15px]">
+              vidyainfo@gmail.com
+            </span>
           </div>
         </div>
 
         {/* Right Side */}
         <div className="flex items-center space-x-2 sm:space-x-3 lg:space-x-4 flex-shrink-0">
-          <a href="#" className={darkModeColors.linkHover}>
+          {/* hidden on mobile (visible from sm:640px and above) */}
+          <a href="#" className={`hidden sm:inline ${darkModeColors.linkHover}`}>
             <FaFacebook className="text-[12px] sm:text-lg lg:text-[18px]" />
           </a>
-          <a href="#" className={darkModeColors.linkHover}>
+          <a href="#" className={`hidden sm:inline ${darkModeColors.linkHover}`}>
             <FaInstagram className="text-[12px] sm:text-lg lg:text-[18px]" />
           </a>
-          <a href="#" className={darkModeColors.linkHover}>
+          <a href="#" className={`hidden sm:inline ${darkModeColors.linkHover}`}>
             <FaWhatsapp className="text-[12px] sm:text-lg lg:text-[18px]" />
           </a>
         </div>

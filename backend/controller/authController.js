@@ -97,7 +97,10 @@ exports.login = async (req, res) => {
     if (!user.isVerified)
       return res.status(401).json({ message: 'Please verify your email before logging in.' });
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    // ✅ Changed: Remove expiration to keep users logged in until manual logout
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+    // Alternative: If you prefer a very long expiration instead:
+    // const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '365d' });
 
     res.json({ token, user: { id: user._id, name: user.name, email: user.email, role: user.role } });
   } catch (err) {

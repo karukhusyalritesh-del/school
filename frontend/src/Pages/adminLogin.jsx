@@ -41,7 +41,7 @@ const AdminAuth = () => {
 
         toast.success("Login successful! Redirecting to admin panel...");
         // Redirect to admin frontend add.jsx page
-        window.location.href = "https://school-backend-ivory.vercel.app";
+        window.location.href = "https://school-admin-omega.vercel.app";
       } else if (formType === "forgot") {
         const res = await axios.post(`${BACKEND_URL}/api/auth/forgot-password`, { email: formData.email });
         toast.success(res.data.message);

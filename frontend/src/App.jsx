@@ -1,6 +1,11 @@
 // App.jsx
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -30,57 +35,151 @@ import ProtectedRoute from "./Components/ProtectedRoute";
 // Dark Mode Colors
 import darkModeColors from "./Components/DarkMode";
 
-// ✅ Helper component to handle layout logic
+//  Helper component to handle layout logic
 const Layout = ({ darkMode, toggleDarkMode }) => {
   const location = useLocation();
   const hideMainNav = location.pathname === "/notice"; // hide on notice page
 
   return (
-    <div className={`${darkMode ? darkModeColors.body : "bg-white text-black"} min-h-screen`}>
+    <div
+      className={`${
+        darkMode ? darkModeColors.body : "bg-white text-black"
+      } min-h-screen`}
+    >
       <FirstNavbar isDarkMode={darkMode} />
 
-      {/* ✅ Only show MainNav if not on /notice */}
-      {!hideMainNav && <MainNav isDarkMode={darkMode} />}
+      {/* Only show MainNav  */}
+     <MainNav isDarkMode={darkMode} />
 
       <ToastContainer />
 
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <Hero isDarkMode={darkMode} />
-              <Card isDarkMode={darkMode} />
-              <PrincipleMssg isDarkMode={darkMode} />
-              <Counters isDarkMode={darkMode} />
-              <GalleryQuoteLayout isDarkMode={darkMode} />
-              <TeacherSlider isDarkMode={darkMode} />
-              <WhyVidyaSchool isDarkMode={darkMode} />
-              <ContactForm isDarkMode={darkMode} />
-              <Footer isDarkMode={darkMode} />
-            </>
-          }
-        />
-        <Route path="/login" element={<AuthForm isDarkMode={darkMode} />} />
-        <Route path="/admin" element={<AdminAuth isDarkMode={darkMode} />} />
-        <Route
-          path="/notice"
-          element={
-            <ProtectedRoute>
-              <NoticePage isDarkMode={darkMode} />
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
+<Routes>
+  <Route
+    path="/"
+    element={
+      <>
+        <Hero isDarkMode={darkMode} />
+        <Card isDarkMode={darkMode} />
+        <PrincipleMssg isDarkMode={darkMode} />
+        <Counters isDarkMode={darkMode} />
+        <GalleryQuoteLayout isDarkMode={darkMode} />
+        <TeacherSlider isDarkMode={darkMode} />
+        <WhyVidyaSchool isDarkMode={darkMode} />
+        <ContactForm isDarkMode={darkMode} />
+        <Footer isDarkMode={darkMode} />
+      </>
+    }
+  />
+  
+  <Route path="/login" element={<AuthForm isDarkMode={darkMode} />} />
+  <Route path="/admin" element={<AdminAuth isDarkMode={darkMode} />} />
+  
+  <Route
+    path="/notice"
+    element={
+      <ProtectedRoute>
+        <NoticePage isDarkMode={darkMode} />
+      </ProtectedRoute>
+    }
+  />
+  
+  {/* Updated Principle Route - Shows Full Page */}
+  <Route
+    path="/principle"
+    element={
+      <>
+        <Hero isDarkMode={darkMode} />
+        <Card isDarkMode={darkMode} />
+        <PrincipleMssg isDarkMode={darkMode} />
+        <Counters isDarkMode={darkMode} />
+        <GalleryQuoteLayout isDarkMode={darkMode} />
+        <TeacherSlider isDarkMode={darkMode} />
+        <WhyVidyaSchool isDarkMode={darkMode} />
+        <ContactForm isDarkMode={darkMode} />
+        <Footer isDarkMode={darkMode} />
+      </>
+    }
+  />
+  
+<Route
+  path="/contact"
+  element={
+    <>
+      <Hero isDarkMode={darkMode} />
+      <Card isDarkMode={darkMode} />
+      <PrincipleMssg isDarkMode={darkMode} />
+      <Counters isDarkMode={darkMode} />
+      <GalleryQuoteLayout isDarkMode={darkMode} />
+      <TeacherSlider isDarkMode={darkMode} />
+      <WhyVidyaSchool isDarkMode={darkMode} />
+      <ContactForm isDarkMode={darkMode} />
+      <Footer isDarkMode={darkMode} />
+    </>
+  }
+/>
+  
+<Route
+  path="/activities"
+  element={
+    <>
+      <Hero isDarkMode={darkMode} />
+      <Card isDarkMode={darkMode} />
+      <PrincipleMssg isDarkMode={darkMode} />
+      <Counters isDarkMode={darkMode} />
+      <GalleryQuoteLayout isDarkMode={darkMode} />
+      <TeacherSlider isDarkMode={darkMode} />
+      <WhyVidyaSchool isDarkMode={darkMode} />
+      <ContactForm isDarkMode={darkMode} />
+      <Footer isDarkMode={darkMode} />
+    </>
+  }
+/>
+
+<Route
+  path="/environment"
+  element={
+    <>
+      <Hero isDarkMode={darkMode} />
+      <Card isDarkMode={darkMode} />
+      <PrincipleMssg isDarkMode={darkMode} />
+      <Counters isDarkMode={darkMode} />
+      <GalleryQuoteLayout isDarkMode={darkMode} />
+      <TeacherSlider isDarkMode={darkMode} />
+      <WhyVidyaSchool isDarkMode={darkMode} />
+      <ContactForm isDarkMode={darkMode} />
+      <Footer isDarkMode={darkMode} />
+    </>
+  }
+/>
+
+<Route
+  path="/teachers"
+  element={
+    <>
+      <Hero isDarkMode={darkMode} />
+      <Card isDarkMode={darkMode} />
+      <PrincipleMssg isDarkMode={darkMode} />
+      <Counters isDarkMode={darkMode} />
+      <GalleryQuoteLayout isDarkMode={darkMode} />
+      <TeacherSlider isDarkMode={darkMode} />
+      <WhyVidyaSchool isDarkMode={darkMode} />
+      <ContactForm isDarkMode={darkMode} />
+      <Footer isDarkMode={darkMode} />
+    </>
+  }
+/>
+</Routes>
 
       <FloatingMenu onToggleDarkMode={toggleDarkMode} />
-      <SocialSidebar/>
+      <SocialSidebar />
     </div>
   );
 };
 
 const App = () => {
-  const [darkMode, setDarkMode] = useState(() => localStorage.getItem("darkMode") === "true");
+  const [darkMode, setDarkMode] = useState(
+    () => localStorage.getItem("darkMode") === "true"
+  );
 
   const toggleDarkMode = () => {
     setDarkMode((prev) => {

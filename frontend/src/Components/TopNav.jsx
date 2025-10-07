@@ -18,7 +18,7 @@ const FirstNavbar = ({ isDarkMode }) => {
           <div className="flex items-center space-x-1 sm:space-x-2 whitespace-nowrap">
             <FaEnvelope className="text-[12px] sm:text-sm lg:text-[15px]" />
             <span className="text-[10px] sm:text-xs lg:text-[15px]">
-              vidyainfo@gmail.com
+              vidyainfonepal@gmail.com
             </span>
           </div>
         </div>

@@ -1,7 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import darkModeColors from "./DarkMode"; // Import your dark mode color settings
+import { useState } from 'react';
 
 const ContactUs = ({ isDarkMode }) => {
+
+ const sectionRef = useRef(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    // Scroll to principle section when route is /principle
+    if (location.pathname === '/contact' && sectionRef.current) {
+      setTimeout(() => {
+        sectionRef.current.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }, 100);
+    }
+  }, [location]);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -22,7 +40,7 @@ const ContactUs = ({ isDarkMode }) => {
     setResult("Sending....");
 
     const dataForm = new FormData(event.target); // renamed to avoid conflict
-    dataForm.append("access_key", "c4b3955b-0ab8-4678-a166-3005e6a5e70f");
+    dataForm.append("access_key", "5b2b27d6-ccf7-40e1-a18e-cb3881b4f4d5");
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -47,7 +65,7 @@ const ContactUs = ({ isDarkMode }) => {
   };
 
   return (
-    <section
+    <section ref={sectionRef}
       id="contact"
       className={`w-full py-16 transition-colors duration-500 ${
         isDarkMode ? darkModeColors.contactForm : "bg-gray-50 text-black"
@@ -105,7 +123,7 @@ const ContactUs = ({ isDarkMode }) => {
               </div>
               <div>
                 <h3 className={`text-lg font-semibold mb-2 ${isDarkMode ? "text-white" : "text-gray-800"}`}>Email</h3>
-                <p className={`text-lg ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>Vidyainfo@gmail.com</p>
+                <p className={`text-lg ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>vidyainfonepal@gmail.com</p>
               </div>
             </div>
 

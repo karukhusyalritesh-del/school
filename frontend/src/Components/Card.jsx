@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import PencilBg from "../assets/pencil.jpg"; 
 import { FaPencilAlt, FaUserGraduate, FaBaseballBall } from "react-icons/fa";
 import darkModeColors from "./DarkMode";
 
 const Card = ({ isDarkMode }) => {
+  const sectionRef = useRef(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    // Scroll to activities section when route is /activities
+    if (location.pathname === '/activities' && sectionRef.current) {
+      setTimeout(() => {
+        sectionRef.current.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }, 100);
+    }
+  }, [location]);
   return (
-    <section
+    <section ref={sectionRef}
       id="second-section"
       className="bg-cover bg-center bg-fixed min-h-screen flex justify-center items-center relative"
       style={{ backgroundImage: `url(${PencilBg})` }}

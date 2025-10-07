@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import viceImg from '../assets/vice.jpg';
 import nilamImg from '../assets/nilam.jpg';
 import galImg from '../assets/gal.jpg';
@@ -6,6 +7,22 @@ import starImg from '../assets/star.png';
 import darkModeClasses from './DarkMode'; // ✅ Import dark mode config
 
 const TeachersSlider = ({ isDarkMode }) => {
+
+const sectionRef = useRef(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    // Scroll to teachers section when route is /teachers
+    if (location.pathname === '/teachers' && sectionRef.current) {
+      setTimeout(() => {
+        sectionRef.current.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }, 100);
+    }
+  }, [location]);
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const slideInterval = useRef(null);
 
@@ -75,7 +92,7 @@ const TeachersSlider = ({ isDarkMode }) => {
   };
 
   return (
-    <section
+    <section ref={sectionRef}
       className={`w-full relative overflow-hidden transition-all duration-500 ${
         isDarkMode ? darkModeClasses.teacherSlider : "bg-white text-black"
       }`}

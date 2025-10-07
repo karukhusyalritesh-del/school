@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { FaGraduationCap } from "react-icons/fa";
 import principalImg from "../assets/principle.png"; // principal image
 import star from "../assets/star.png"; // star image
 import darkModeColors from "./DarkMode";
+import { useLocation } from 'react-router-dom';
 
 const PrincipalMsg = ({ isDarkMode }) => {
+
+ const sectionRef = useRef(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    // Scroll to principle section when route is /principle
+    if (location.pathname === '/principle' && sectionRef.current) {
+      setTimeout(() => {
+        sectionRef.current.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }, 100);
+    }
+  }, [location]);
+
   return (
-    <section
+    <section ref={sectionRef}
       className={`min-h-screen flex justify-center items-center py-0 px-20 bg-contain max-lg:py-8 max-lg:px-4 ${
         isDarkMode ? darkModeColors.principle : "bg-white text-black"
       }`}

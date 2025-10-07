@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import { FaQuoteLeft } from "react-icons/fa";
 import centerImage from "../assets/arrow.png"; 
 import img1 from '../assets/flower1.png'
@@ -9,8 +10,23 @@ import img5 from '../assets/flower5.png'
 import img6 from '../assets/flower6.png'
 import img7 from '../assets/flower7.png'
 import darkModeColors from "./DarkMode";
+import { useState } from 'react';
 
 const GalleryQuoteLayout = ({ isDarkMode }) => {
+   const environmentRef = useRef(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    // Scroll to environment section when route is /environment
+    if (location.pathname === '/environment' && environmentRef.current) {
+      setTimeout(() => {
+        environmentRef.current.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }, 100);
+    }
+  }, [location]);
   const images = [
     {
       src: img1,
@@ -65,7 +81,7 @@ const GalleryQuoteLayout = ({ isDarkMode }) => {
   };
 
   return (
-    <section id="aboutSection"
+    <section id="aboutSection" ref={environmentRef}
       className={`w-full min-h-screen flex justify-center items-center px-4 md:px-10 lg:px-12 overflow-hidden ${
         isDarkMode ? darkModeColors.about : "bg-white text-black"
       }`}

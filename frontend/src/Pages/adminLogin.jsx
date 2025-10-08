@@ -3,11 +3,10 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// Make sure to have VITE_BACKEND_URL in .env: VITE_BACKEND_URL=http://localhost:3000
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const AdminAuth = () => {
-  const [formType, setFormType] = useState("login"); // "login" | "signup" | "forgot"
+  const [formType, setFormType] = useState("login"); 
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -55,7 +54,7 @@ const AdminAuth = () => {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
+        <h2 className="text-2xl font-bold text-center mb-6 text-[#263675]">
           {formType === "login" && "Admin Login"}
           {formType === "signup" && "Admin Signup"}
           {formType === "forgot" && "Forgot Password"}
@@ -113,11 +112,11 @@ const AdminAuth = () => {
 
           <button
             type="submit"
-            className={`w-full py-2 rounded-lg text-white ${
+            className={`w-full py-2 rounded-lg text-white cursor-pointer ${
               formType === "signup"
-                ? "bg-green-600 hover:bg-green-700"
+                ? "bg-[#263675] hover:bg-green-700"
                 : formType === "login"
-                ? "bg-blue-600 hover:bg-blue-700"
+                ? "bg-[#263675] hover:bg-blue-700"
                 : "bg-purple-600 hover:bg-purple-700"
             } transition`}
           >
@@ -135,14 +134,14 @@ const AdminAuth = () => {
             <>
               <button
                 type="button"
-                className="text-blue-600 hover:underline"
+                className="text-blue-600 hover:underline cursor-pointer"
                 onClick={() => setFormType("forgot")}
               >
                 Forgot Password?
               </button>
               <button
                 type="button"
-                className="text-blue-600 hover:underline"
+                className="text-blue-600 hover:underline cursor-pointer"
                 onClick={() => setFormType("signup")}
               >
                 Signup
@@ -152,7 +151,7 @@ const AdminAuth = () => {
           {formType === "signup" && (
             <button
               type="button"
-              className="text-blue-600 hover:underline"
+              className="text-blue-600 hover:underline cursor-pointer"
               onClick={() => setFormType("login")}
             >
               Already have an account? Login
@@ -161,7 +160,7 @@ const AdminAuth = () => {
           {formType === "forgot" && (
             <button
               type="button"
-              className="text-blue-600 hover:underline"
+              className="text-blue-600 hover:underline cursor-pointer"
               onClick={() => setFormType("login")}
             >
               Back to Login

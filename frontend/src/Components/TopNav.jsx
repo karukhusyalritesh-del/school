@@ -1,5 +1,5 @@
 import React from "react";
-import { FaPhone, FaEnvelope, FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { FaPhoneAlt, FaEnvelope, FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa"; // 👈 changed FaPhone → FaPhoneAlt
 import darkModeColors from "./DarkMode"; // import dark mode colors
 
 const FirstNavbar = ({ isDarkMode }) => {
@@ -8,9 +8,9 @@ const FirstNavbar = ({ isDarkMode }) => {
       <div className="flex justify-between items-center flex-nowrap">
 
         {/* Left Side */}
-        <div className="flex items-center space-x-2 sm:space-x-3 lg:space-x-8 text-[10px] sm:text-xs lg:text-[12px] flex-shrink-0">
+        <div className="flex items-center space-x-4 sm:space-x-3 lg:space-x-6 text-[10px] sm:text-xs lg:text-[12px] flex-shrink-0">
           <div className="flex items-center space-x-1 sm:space-x-2 whitespace-nowrap">
-            <FaPhone className="text-[12px] sm:text-sm lg:text-[15px]" />
+            <FaPhoneAlt className="text-[12px] sm:text-sm lg:text-[15px]" /> 
             <span className="text-[10px] sm:text-xs lg:text-[14px]">
               +977 9821775780 | +977 9808054226
             </span>

@@ -29,7 +29,7 @@ const sectionRef = useRef(null);
   const slides = [
     {
       name: "Devendra Yadav",
-      role: "Founder",
+      role: "Principle",
       description: "I am the founder of our school. As the founder, my role is to create a warm and inspiring environment where every child can learn, grow, and shine. I guide the vision of the school, support our teachers, and make sure every student feels valued and encouraged. My goal is to build a place where learning is joyful, dreams are nurtured, and every child can reach their full potential.",
       image: viceImg
     },

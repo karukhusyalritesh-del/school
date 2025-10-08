@@ -10,14 +10,11 @@ const NoticePage = () => {
 
   const fetchNotices = async () => {
     try {
-      console.log('Fetching notices for frontend...');
       const res = await api.get("/notice/all");
-      console.log('Frontend notices:', res.data);
       const noticesData = Array.isArray(res.data) ? res.data : [];
       setNotices(noticesData);
       setLoading(false);
     } catch (err) {
-      console.error("Error fetching notices:", err);
       setNotices([]);
       setLoading(false);
     }
@@ -76,7 +73,7 @@ const NoticePage = () => {
               className={`px-4 py-2 rounded-full font-medium transition ${
                 activeCategory === category
                   ? "bg-[#263675] text-white"
-                  : "bg-white border border-gray-300 text-gray-700 hover:bg-blue-100"
+                  : "bg-white border border-gray-300 text-gray-700 hover:bg-blue-100 cursor-pointer"
               }`}
               onClick={() => setActiveCategory(category)}
             >

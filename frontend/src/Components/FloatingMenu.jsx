@@ -23,34 +23,33 @@ const FloatingMenu = ({ onToggleDarkMode }) => {
         >
           <a
             href="tel:9819999475"
-            className="w-12 h-12 rounded-full bg-green-600 flex items-center justify-center text-white shadow-md hover:scale-110 transition-transform duration-300"
+            className="w-12 h-12 rounded-full bg-green-600 flex items-center justify-center text-white shadow-md hover:scale-110 transition-transform duration-300 cursor-pointer"
             title="Call Us"
           >
             <FaPhoneAlt size={20} />
           </a>
           <a
             href="mailto:riteshtharu58@gmail.com?subject=Hello%20there&body=This%20is%20a%20pre-filled%20message"
-            className="w-12 h-12 rounded-full bg-red-500 flex items-center justify-center text-white shadow-md hover:scale-110 transition-transform duration-300"
+            className="w-12 h-12 rounded-full bg-red-500 flex items-center justify-center text-white shadow-md hover:scale-110 transition-transform duration-300 cursor-pointer"
             title="Send Email"
           >
             <FaEnvelope size={20} />
           </a>
-<button
-  onClick={handleDarkModeClick}
-  className={`w-12 h-12 rounded-full flex items-center justify-center text-white shadow-md hover:scale-110 transition-transform duration-300 ${
-    isDark ? "bg-gray-800" : "bg-yellow-500"
-  }`}
-  title="Toggle Dark Mode"
->
-  {isDark ? <FaMoon size={20} /> : <FaSun size={20} />}
-</button>
-
+          <button
+            onClick={handleDarkModeClick}
+            className={`w-12 h-12 rounded-full flex items-center justify-center text-white shadow-md hover:scale-110 transition-transform duration-300 cursor-pointer ${
+              isDark ? "bg-gray-800" : "bg-yellow-500"
+            }`}
+            title="Toggle Dark Mode"
+          >
+            {isDark ? <FaMoon size={20} /> : <FaSun size={20} />}
+          </button>
         </div>
 
         {/* Main Floating Button */}
         <button
           onClick={toggleMenu}
-          className={`w-12 h-12 rounded-full bg-[#263675] text-white flex items-center justify-center text-2xl shadow-lg hover:bg-blue-800 transition-transform duration-300 ${
+          className={`w-12 h-12 rounded-full bg-[#263675] text-white flex items-center justify-center text-2xl shadow-lg hover:bg-blue-800 transition-transform duration-300 cursor-pointer ${
             menuOpen ? "rotate-45" : "rotate-0"
           }`}
           title="Menu"

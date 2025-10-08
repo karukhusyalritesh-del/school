@@ -213,7 +213,7 @@ const ContactUs = ({ isDarkMode }) => {
               {/* Submit Button */}
               <button
                 type="submit"
-                className={`w-full py-3 px-6 rounded-lg font-semibold transition-colors duration-300 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+                className={`w-full py-3 px-6 rounded-lg font-semibold transition-colors duration-300 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 cursor-pointer ${
                   isDarkMode ? "bg-red-500 hover:bg-red-600 text-white" : "bg-[#263675] hover:bg-blue-700 text-white"
                 }`}
               >

@@ -60,7 +60,6 @@ const MainNav = ({ isDarkMode }) => {
         </li>
 
         {/* About Us Dropdown */}
-       {/* About Us Dropdown */}
 <li className="relative">
   <button
     className={`flex items-center gap-2 cursor-pointer whitespace-nowrap ${
@@ -164,6 +163,17 @@ const MainNav = ({ isDarkMode }) => {
           >
             <FaMoneyBillWave /> Fee
           </button>
+        </li>
+
+        <li>
+          <Link
+            to="/uniform"
+            className={`flex items-center gap-2 ${
+              isDarkMode ? "hover:text-gray-300" : "hover:text-[#263675]"
+            }`}
+          >
+            <FaEnvelope /> Uniform
+          </Link>
         </li>
 
         <li>

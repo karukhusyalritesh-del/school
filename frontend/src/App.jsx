@@ -33,6 +33,7 @@ import ProtectedRoute from "./Components/ProtectedRoute";
 // Dark Mode Colors
 import darkModeColors from "./Components/DarkMode";
 import FeeStructure from "./Pages/FeeStructure";
+import StudentUniform from "./Pages/StudentUniform";
 
 //  Helper component to handle layout logic
 const Layout = ({ darkMode, toggleDarkMode }) => {
@@ -88,6 +89,19 @@ const Layout = ({ darkMode, toggleDarkMode }) => {
             <Footer className="no-print" />
           </ProtectedRoute>
         }
+        />
+
+                <Route
+          path="/uniform"
+          element={
+            <>
+            <StudentUniform isDarkMode={darkMode} />
+            <Footer isDarkMode={darkMode} className="no-print" />
+            </>
+              
+              
+
+          }
         />
 
         <Route

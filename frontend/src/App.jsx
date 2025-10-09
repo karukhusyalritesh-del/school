@@ -1,4 +1,3 @@
-// App.jsx
 import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
@@ -9,7 +8,6 @@ import {
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// Components
 import FirstNavbar from "./Components/TopNav";
 import MainNav from "./Components/MainNav";
 import Hero from "./Components/Hero";
@@ -34,6 +32,7 @@ import ProtectedRoute from "./Components/ProtectedRoute";
 
 // Dark Mode Colors
 import darkModeColors from "./Components/DarkMode";
+import FeeStructure from "./Pages/FeeStructure";
 
 //  Helper component to handle layout logic
 const Layout = ({ darkMode, toggleDarkMode }) => {
@@ -46,132 +45,139 @@ const Layout = ({ darkMode, toggleDarkMode }) => {
         darkMode ? darkModeColors.body : "bg-white text-black"
       } min-h-screen`}
     >
-      <FirstNavbar isDarkMode={darkMode} />
+      <FirstNavbar isDarkMode={darkMode} className="no-print" />
 
       {/* Only show MainNav  */}
-     <MainNav isDarkMode={darkMode} />
+      <MainNav isDarkMode={darkMode} className="no-print" />
 
-      <ToastContainer />
+      <ToastContainer className="no-print" />
 
-<Routes>
-  <Route
-    path="/"
-    element={
-      <>
-        <Hero isDarkMode={darkMode} />
-        <Card isDarkMode={darkMode} />
-        <PrincipleMssg isDarkMode={darkMode} />
-        <Counters isDarkMode={darkMode} />
-        <GalleryQuoteLayout isDarkMode={darkMode} />
-        <TeacherSlider isDarkMode={darkMode} />
-        <WhyVidyaSchool isDarkMode={darkMode} />
-        <ContactForm isDarkMode={darkMode} />
-        <Footer isDarkMode={darkMode} />
-      </>
-    }
-  />
-  
-  <Route path="/login" element={<AuthForm isDarkMode={darkMode} />} />
-  <Route path="/admin" element={<AdminAuth isDarkMode={darkMode} />} />
-  
-  <Route
-    path="/notice"
-    element={
-      <ProtectedRoute>
-        <NoticePage isDarkMode={darkMode} />
-      </ProtectedRoute>
-    }
-  />
-  
-  {/* Updated Principle Route - Shows Full Page */}
-  <Route
-    path="/principle"
-    element={
-      <>
-        <Hero isDarkMode={darkMode} />
-        <Card isDarkMode={darkMode} />
-        <PrincipleMssg isDarkMode={darkMode} />
-        <Counters isDarkMode={darkMode} />
-        <GalleryQuoteLayout isDarkMode={darkMode} />
-        <TeacherSlider isDarkMode={darkMode} />
-        <WhyVidyaSchool isDarkMode={darkMode} />
-        <ContactForm isDarkMode={darkMode} />
-        <Footer isDarkMode={darkMode} />
-      </>
-    }
-  />
-  
-<Route
-  path="/contact"
-  element={
-    <>
-      <Hero isDarkMode={darkMode} />
-      <Card isDarkMode={darkMode} />
-      <PrincipleMssg isDarkMode={darkMode} />
-      <Counters isDarkMode={darkMode} />
-      <GalleryQuoteLayout isDarkMode={darkMode} />
-      <TeacherSlider isDarkMode={darkMode} />
-      <WhyVidyaSchool isDarkMode={darkMode} />
-      <ContactForm isDarkMode={darkMode} />
-      <Footer isDarkMode={darkMode} />
-    </>
-  }
-/>
-  
-<Route
-  path="/activities"
-  element={
-    <>
-      <Hero isDarkMode={darkMode} />
-      <Card isDarkMode={darkMode} />
-      <PrincipleMssg isDarkMode={darkMode} />
-      <Counters isDarkMode={darkMode} />
-      <GalleryQuoteLayout isDarkMode={darkMode} />
-      <TeacherSlider isDarkMode={darkMode} />
-      <WhyVidyaSchool isDarkMode={darkMode} />
-      <ContactForm isDarkMode={darkMode} />
-      <Footer isDarkMode={darkMode} />
-    </>
-  }
-/>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Hero isDarkMode={darkMode} />
+              <Card isDarkMode={darkMode} />
+              <PrincipleMssg isDarkMode={darkMode} />
+              <Counters isDarkMode={darkMode} />
+              <GalleryQuoteLayout isDarkMode={darkMode} />
+              <TeacherSlider isDarkMode={darkMode} />
+              <WhyVidyaSchool isDarkMode={darkMode} />
+              <ContactForm isDarkMode={darkMode} />
+              <Footer isDarkMode={darkMode} className="no-print" />
+            </>
+          }
+        />
 
-<Route
-  path="/environment"
-  element={
-    <>
-      <Hero isDarkMode={darkMode} />
-      <Card isDarkMode={darkMode} />
-      <PrincipleMssg isDarkMode={darkMode} />
-      <Counters isDarkMode={darkMode} />
-      <GalleryQuoteLayout isDarkMode={darkMode} />
-      <TeacherSlider isDarkMode={darkMode} />
-      <WhyVidyaSchool isDarkMode={darkMode} />
-      <ContactForm isDarkMode={darkMode} />
-      <Footer isDarkMode={darkMode} />
-    </>
-  }
-/>
+        <Route path="/login" element={<AuthForm isDarkMode={darkMode} />} />
+        <Route path="/admin" element={<AdminAuth isDarkMode={darkMode} />} />
 
-<Route
-  path="/teachers"
-  element={
-    <>
-      <Hero isDarkMode={darkMode} />
-      <Card isDarkMode={darkMode} />
-      <PrincipleMssg isDarkMode={darkMode} />
-      <Counters isDarkMode={darkMode} />
-      <GalleryQuoteLayout isDarkMode={darkMode} />
-      <TeacherSlider isDarkMode={darkMode} />
-      <WhyVidyaSchool isDarkMode={darkMode} />
-      <ContactForm isDarkMode={darkMode} />
-      <Footer isDarkMode={darkMode} />
-    </>
-  }
-/>
-</Routes>
+        <Route
+          path="/notice"
+          element={
+            <ProtectedRoute>
+              <NoticePage isDarkMode={darkMode} />
+            </ProtectedRoute>
+          }
+        />
 
-      <FloatingMenu onToggleDarkMode={toggleDarkMode} />
-      <SocialSidebar />
+        <Route path="/feestructure" element={
+          <ProtectedRoute>
+            <FeeStructure />
+            <Footer className="no-print" />
+          </ProtectedRoute>
+        }
+        />
+
+        <Route
+          path="/principle"
+          element={
+            <>
+              <Hero isDarkMode={darkMode} />
+              <Card isDarkMode={darkMode} />
+              <PrincipleMssg isDarkMode={darkMode} />
+              <Counters isDarkMode={darkMode} />
+              <GalleryQuoteLayout isDarkMode={darkMode} />
+              <TeacherSlider isDarkMode={darkMode} />
+              <WhyVidyaSchool isDarkMode={darkMode} />
+              <ContactForm isDarkMode={darkMode} />
+              <Footer isDarkMode={darkMode} className="no-print" />
+            </>
+          }
+        />
+
+        <Route
+          path="/contact"
+          element={
+            <>
+              <Hero isDarkMode={darkMode} />
+              <Card isDarkMode={darkMode} />
+              <PrincipleMssg isDarkMode={darkMode} />
+              <Counters isDarkMode={darkMode} />
+              <GalleryQuoteLayout isDarkMode={darkMode} />
+              <TeacherSlider isDarkMode={darkMode} />
+              <WhyVidyaSchool isDarkMode={darkMode} />
+              <ContactForm isDarkMode={darkMode} />
+              <Footer isDarkMode={darkMode} className="no-print" />
+            </>
+          }
+        />
+
+        <Route
+          path="/activities"
+          element={
+            <>
+              <Hero isDarkMode={darkMode} />
+              <Card isDarkMode={darkMode} />
+              <PrincipleMssg isDarkMode={darkMode} />
+              <Counters isDarkMode={darkMode} />
+              <GalleryQuoteLayout isDarkMode={darkMode} />
+              <TeacherSlider isDarkMode={darkMode} />
+              <WhyVidyaSchool isDarkMode={darkMode} />
+              <ContactForm isDarkMode={darkMode} />
+              <Footer isDarkMode={darkMode} className="no-print" />
+            </>
+          }
+        />
+
+        <Route
+          path="/environment"
+          element={
+            <>
+              <Hero isDarkMode={darkMode} />
+              <Card isDarkMode={darkMode} />
+              <PrincipleMssg isDarkMode={darkMode} />
+              <Counters isDarkMode={darkMode} />
+              <GalleryQuoteLayout isDarkMode={darkMode} />
+              <TeacherSlider isDarkMode={darkMode} />
+              <WhyVidyaSchool isDarkMode={darkMode} />
+              <ContactForm isDarkMode={darkMode} />
+              <Footer isDarkMode={darkMode} className="no-print" />
+            </>
+          }
+        />
+
+        <Route
+          path="/teachers"
+          element={
+            <>
+              <Hero isDarkMode={darkMode} />
+              <Card isDarkMode={darkMode} />
+              <PrincipleMssg isDarkMode={darkMode} />
+              <Counters isDarkMode={darkMode} />
+              <GalleryQuoteLayout isDarkMode={darkMode} />
+              <TeacherSlider isDarkMode={darkMode} />
+              <WhyVidyaSchool isDarkMode={darkMode} />
+              <ContactForm isDarkMode={darkMode} />
+              <Footer isDarkMode={darkMode} className="no-print" />
+            </>
+          }
+        />
+      </Routes>
+
+      <FloatingMenu onToggleDarkMode={toggleDarkMode} className="no-print" />
+      <SocialSidebar className="no-print" />
     </div>
   );
 };

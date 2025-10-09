@@ -11,6 +11,7 @@ import {
   FaBell,
   FaUser,
   FaTimes,
+  FaMoneyBillWave
 } from "react-icons/fa";
 import darkModeColors from "./DarkMode";
 
@@ -127,7 +128,7 @@ const MainNav = ({ isDarkMode }) => {
               isDarkMode ? "hover:text-gray-300" : "hover:text-[#263675]"
             }`}
           >
-            <FaUserTie /> Principle
+            <FaUserTie /> Founder
           </Link>
         </li>
 
@@ -145,6 +146,23 @@ const MainNav = ({ isDarkMode }) => {
             }`}
           >
             <FaBell /> Notice
+          </button>
+        </li>
+
+                <li>
+          <button
+            onClick={() => {
+              if (isLoggedIn) {
+                navigate("/feestructure");
+              } else {
+                toast.error("You must be logged in to access school fee structure");
+              }
+            }}
+            className={`flex items-center gap-2 cursor-pointer ${
+              isDarkMode ? "hover:text-gray-300" : "hover:text-[#263675]"
+            }`}
+          >
+            <FaMoneyBillWave /> Fee
           </button>
         </li>
 
@@ -275,7 +293,7 @@ const MainNav = ({ isDarkMode }) => {
                 setMenuOpen(false);
               }}
             >
-              <FaUserTie /> Principle
+              <FaUserTie /> Founder
             </Link>
           </li>
           <li>
@@ -291,6 +309,21 @@ const MainNav = ({ isDarkMode }) => {
               className="flex items-center gap-2"
             >
               <FaBell /> Notice
+            </button>
+          </li>
+                    <li>
+            <button
+              onClick={() => {
+                if (isLoggedIn) {
+                  navigate("/feestructure");
+                } else {
+                  toast.error("You must be logged in to access school fee structure");
+                }
+                setMenuOpen(false);
+              }}
+              className="flex items-center gap-2"
+            >
+              <FaMoneyBillWave /> Fee
             </button>
           </li>
           <li>

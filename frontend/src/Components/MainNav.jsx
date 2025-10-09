@@ -336,6 +336,20 @@ const MainNav = ({ isDarkMode }) => {
               <FaMoneyBillWave /> Fee
             </button>
           </li>
+
+            <li>
+            <Link
+              to="/uniform"
+              className="flex items-center gap-2"
+              onClick={() => {
+                handleNav("contact");
+                setMenuOpen(false);
+              }}
+            >
+              <FaEnvelope /> Uniform
+            </Link>
+          </li>
+
           <li>
             <Link
               to="/contact"

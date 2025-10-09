@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { FaDownload } from "react-icons/fa";
 import main1 from '../../src/assets/main1.jpeg'
 import main2 from '../../src/assets/main2.jpeg'
 import uniform1 from '../../src/assets/uniform1.jpeg'
@@ -9,6 +10,25 @@ import uniform5 from '../../src/assets/uniform5.jpeg'
 import uniform6 from '../../src/assets/uniform6.jpeg'
 
 const StudentUniform = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  const [activeImage, setActiveImage] = useState(null);
+
+  // Check if device is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    // Initial check
+    checkMobile();
+
+    // Add event listener for resize
+    window.addEventListener('resize', checkMobile);
+
+    // Cleanup
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   // Top row images
   const topRowImages = [
     {
@@ -100,27 +120,91 @@ const StudentUniform = () => {
     }
   };
 
-  // Image component with loading state
-const UniformImage = ({ image }) => (
-  <div className="group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-200">
-    <div className="aspect-w-4 aspect-h-5">
-      <img
-        src={image.src}
-        alt={image.alt}
-        className="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-110"
-      />
-    </div>
-    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end justify-center p-6">
-      <button
-        onClick={() => handleDownload(image)}
-        className="bg-white text-gray-900 px-6 py-3 rounded-lg font-semibold transform translate-y-8 group-hover:translate-y-0 transition-all duration-300 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 shadow-lg border border-gray-300 hover:scale-105 cursor-pointer"
-      >
-        ⬇ Download
-      </button>
-    </div>
-  </div>
-);
+  // Handle image tap/click for mobile
+  const handleImageTap = (imageId) => {
+    if (isMobile) {
+      if (activeImage === imageId) {
+        setActiveImage(null); // Hide button if same image is tapped again
+      } else {
+        setActiveImage(imageId); // Show button for tapped image
+      }
+    }
+  };
 
+  // Close active image when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isMobile && activeImage && !event.target.closest('.uniform-image-container')) {
+        setActiveImage(null);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [isMobile, activeImage]);
+
+  // Image component with mobile tap support
+  const UniformImage = ({ image }) => {
+    const isActive = activeImage === image.id;
+    const showDownloadButton = !isMobile || isActive;
+
+    return (
+      <div 
+        className={`group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-200 uniform-image-container ${
+          isMobile ? 'cursor-pointer' : ''
+        } ${isActive ? 'ring-2 ring-[#263675] ring-offset-2' : ''}`}
+        onClick={() => handleImageTap(image.id)}
+      >
+        <div className="aspect-w-4 aspect-h-5">
+          <img
+            src={image.src}
+            alt={image.alt}
+            className="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-110"
+          />
+        </div>
+        
+        {/* Desktop hover effect */}
+        {!isMobile && (
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end justify-center p-6">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleDownload(image);
+              }}
+              className="inline-flex items-center gap-2 bg-white text-gray-900 px-6 py-3 rounded-lg font-semibold transform translate-y-8 group-hover:translate-y-0 transition-all duration-300 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 shadow-lg border border-gray-300 hover:scale-105 cursor-pointer"
+            >
+              <FaDownload /> Download
+            </button>
+          </div>
+        )}
+
+        {/* Mobile tap effect - always visible when active */}
+        {isMobile && showDownloadButton && (
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end justify-center p-6">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleDownload(image);
+                setActiveImage(null); // Hide button after download
+              }}
+              className="inline-flex items-center gap-2 bg-white text-gray-900 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 shadow-lg border border-gray-300 cursor-pointer animate-bounce-slow"
+            >
+              <FaDownload /> Download
+            </button>
+          </div>
+        )}
+
+        {/* Mobile tap hint */}
+        {isMobile && !isActive && (
+          <div className="absolute bottom-2 left-0 right-0 text-center">
+            <span className="inline-block bg-black/70 text-white text-xs px-2 py-1 rounded-lg">
+              Tap to download
+            </span>
+          </div>
+        )}
+      </div>
+    );
+  };
 
   return (
     <section className="w-full py-16 bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
@@ -132,7 +216,6 @@ const UniformImage = ({ image }) => (
           </h1>
           <p className="text-md text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Below is our school dress sample that you need to buy or get stitched at any shop. Other items such as the tie, belt, and identity card will be provided by the school. Winter clothes like the school sports dress, hoodie, and sweaters will also be given by the school.
-
           </p>
         </div>
 
@@ -164,10 +247,11 @@ const UniformImage = ({ image }) => (
         <div className="text-center">
           <button
             onClick={handleDownloadAll}
-            className="bg-gradient-to-r from-[#263675] to-[#4E56C0] text-white px-10 py-4 rounded-xl font-bold text-lg hover:from-[#134686] hover:to-[#31326F] focus:outline-none focus:ring-4 focus:ring-[#0046FF] focus:ring-offset-2 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl cursor-pointer"
+            className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#263675] to-[#4E56C0] text-white px-10 py-4 rounded-xl font-bold text-lg hover:from-[#134686] hover:to-[#31326F] focus:outline-none focus:ring-4 focus:ring-[#0046FF] focus:ring-offset-2 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl cursor-pointer"
           >
-            🡇 Download All Uniform Images
+            <FaDownload /> Download All Uniform Images
           </button>
+
           <p className="text-gray-500 text-sm mt-3">
             This will download all 8 uniform images one by one
           </p>

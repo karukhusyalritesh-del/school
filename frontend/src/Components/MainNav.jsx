@@ -244,7 +244,7 @@ const MainNav = ({ isDarkMode }) => {
               onClick={() => setDropdownOpen(!dropdownOpen)}
               className="flex items-center gap-2"
             >
-              <FaInfoCircle /> About Us
+              <FaInfoCircle /> About
               <FaChevronDown
                 className={`ml-2 transition-transform duration-200 ${
                   dropdownOpen ? "rotate-180" : ""
@@ -342,7 +342,6 @@ const MainNav = ({ isDarkMode }) => {
               to="/uniform"
               className="flex items-center gap-2"
               onClick={() => {
-                handleNav("contact");
                 setMenuOpen(false);
               }}
             >

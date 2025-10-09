@@ -3,7 +3,7 @@ import MainNav from '../Components/MainNav';
 import api from "../api/axios";
 import NepaliDate from "nepali-date";
 
-const NoticePage = () => {
+const NoticePage = ({ isDarkMode }) => {
   const [activeCategory, setActiveCategory] = useState("Bus Notice");
   const [notices, setNotices] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -40,7 +40,7 @@ const NoticePage = () => {
       
       // Convert to 12-hour format
       hours = hours % 12;
-      hours = hours ? hours : 12; // the hour '0' should be '12'
+      hours = hours ? hours : 12;
       hours = String(hours).padStart(2, "0");
 
       return {
@@ -60,9 +60,24 @@ const NoticePage = () => {
     .filter((notice) => notice.category === activeCategory)
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
+  // Dark mode styles
+  const darkModeStyles = {
+    container: isDarkMode ? "bg-[#0a0c23] text-white" : "bg-gray-50 text-black",
+    card: isDarkMode ? "bg-[#1b1b45] border-gray-700 text-white" : "bg-white border-gray-200 text-gray-700",
+    categoryButton: {
+      active: isDarkMode ? "bg-[#2c2c6c] text-white" : "bg-[#263675] text-white",
+      inactive: isDarkMode ? "bg-[#242250] border-gray-600 text-gray-300 hover:bg-[#2c2c6c]" : "bg-white border-gray-300 text-gray-700 hover:bg-blue-100"
+    },
+    categoryBadge: isDarkMode ? "bg-[#2c2c6c] text-gray-300" : "bg-gray-100 text-gray-600",
+    title: isDarkMode ? "text-white" : "text-[#263675]",
+    loadingText: isDarkMode ? "text-gray-400" : "text-gray-500"
+  };
+
   return (
-    <div className="p-6 md:p-12 bg-gray-50 min-h-screen">
-      <h1 className="text-3xl font-bold text-center mb-8 text-[#263675]">School Notices</h1>
+    <div className={`p-6 md:p-12 min-h-screen ${darkModeStyles.container}`}>
+      <h1 className={`text-3xl font-bold text-center mb-8 ${isDarkMode ? "text-white" : "text-[#263675]"}`}>
+        School Notices
+      </h1>
 
       {/* Categories Tabs */}
       <div className="flex flex-wrap justify-center mb-6 gap-4">
@@ -72,9 +87,9 @@ const NoticePage = () => {
               key={category}
               className={`px-4 py-2 rounded-full font-medium transition ${
                 activeCategory === category
-                  ? "bg-[#263675] text-white"
-                  : "bg-white border border-gray-300 text-gray-700 hover:bg-blue-100 cursor-pointer"
-              }`}
+                  ? darkModeStyles.categoryButton.active
+                  : darkModeStyles.categoryButton.inactive
+              } border cursor-pointer`}
               onClick={() => setActiveCategory(category)}
             >
               {category}
@@ -86,9 +101,11 @@ const NoticePage = () => {
       {/* Notice Cards */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {loading ? (
-          <p className="text-gray-500 text-center col-span-full">Loading notices...</p>
+          <p className={`text-center col-span-full ${darkModeStyles.loadingText}`}>
+            Loading notices...
+          </p>
         ) : filteredNotices.length === 0 ? (
-          <p className="text-gray-500 text-center col-span-full">
+          <p className={`text-center col-span-full ${darkModeStyles.loadingText}`}>
             No {activeCategory} available.
           </p>
         ) : (
@@ -98,21 +115,25 @@ const NoticePage = () => {
             return (
               <div
                 key={notice._id}
-                className="bg-white border border-gray-200 rounded-lg p-6 shadow hover:shadow-lg transition flex flex-col justify-between"
+                className={`border rounded-lg p-6 shadow hover:shadow-lg transition flex flex-col justify-between ${darkModeStyles.card}`}
               >
                 <div>
-                  <h3 className="font-bold text-lg text-[#263675] mb-2">{notice.title}</h3>
-                  <p className="text-gray-700 mb-4">{notice.description}</p>
+                  <h3 className={`font-bold text-lg mb-2 ${darkModeStyles.title}`}>
+                    {notice.title}
+                  </h3>
+                  <p className={`mb-4 ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>
+                    {notice.description}
+                  </p>
                 </div>
                 <div className="flex justify-between items-center text-sm">
-                  <span className="bg-gray-100 px-2 py-1 rounded text-gray-600 font-bold">
+                  <span className={`px-2 py-1 rounded font-bold ${darkModeStyles.categoryBadge}`}>
                     {notice.category}
                   </span>
                   <div className="text-right">
-                    <div className="text-green-600 font-medium">
+                    <div className={`font-medium ${isDarkMode ? "text-green-400" : "text-green-600"}`}>
                       {formattedDateTime.date}
                     </div>
-                    <div className="text-green-600 text-xs font-bold">
+                    <div className={`text-xs font-bold ${isDarkMode ? "text-green-400" : "text-green-600"}`}>
                       {formattedDateTime.time}
                     </div>
                   </div>

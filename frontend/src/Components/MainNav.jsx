@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import logo from "../assets/logo.jpg";
+import Footer from "./Footer";
 import {
   FaHome,
   FaInfoCircle,

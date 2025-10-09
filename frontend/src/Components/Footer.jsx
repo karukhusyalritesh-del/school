@@ -1,7 +1,46 @@
 import React from 'react';
-import { FaFacebook, FaWhatsapp, FaInstagram, FaTelegram } from 'react-icons/fa';
+import { FaFacebook, FaWhatsapp, FaInstagram, FaTelegram, FaHome, FaEnvelope, FaUserTie } from 'react-icons/fa';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Footer = () => {
+  const navigate = useNavigate();
+
+  // Function to handle navigation for Home section
+  const handleNav = (section) => {
+    if (section === "home") {
+      // Scroll to top if already on home page, or navigate to home
+      if (window.location.pathname === '/') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        navigate('/');
+        // Scroll to top after navigation
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  };
+
+  // Function to handle section navigation
+  const handleSectionNav = (sectionId) => {
+    if (window.location.pathname === '/') {
+      // If already on home page, scroll to section
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // If not on home page, navigate to home and then scroll to section
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  };
+
   return (
     <footer>
       <div className="footer bg-[#263675] py-6 md:py-[30px] font-['Montserrat'] text-center" id="footer">
@@ -27,21 +66,37 @@ const Footer = () => {
         {/* Navigation Links Row */}
         <div className="row w-full my-2 md:my-[1%] py-2 md:py-[0.6%] text-white">
           <ul className="w-full flex flex-col sm:flex-row justify-center items-center space-y-3 sm:space-y-0 sm:space-x-4 md:space-x-8 lg:space-x-12 px-4">
+            {/* Home */}
             <li className="sm:inline-block">
-              <a href="#home" className="text-white no-underline transition-colors duration-500 hover:text-orange-500 text-sm sm:text-base md:text-[0.8em] block sm:inline-block py-1 sm:py-0">
-                Home
-              </a>
+              <button
+                onClick={() => handleNav("home")}
+                className="flex items-center gap-2 text-white no-underline transition-colors duration-500 hover:text-orange-500 text-sm sm:text-base md:text-[0.8em] py-1 sm:py-0 cursor-pointer bg-transparent border-none"
+              >
+                <FaHome className="w-4 h-4" /> Home
+              </button>
             </li>
+            
+            {/* Contact us */}
             <li className="sm:inline-block">
-              <a href="#contact" className="text-white no-underline transition-colors duration-500 hover:text-orange-500 text-sm sm:text-base md:text-[0.8em] block sm:inline-block py-1 sm:py-0">
-                Contact us
-              </a>
+              <Link
+                to="/contact"
+                className="flex items-center gap-2 text-white no-underline transition-colors duration-500 hover:text-orange-500 text-sm sm:text-base md:text-[0.8em] py-1 sm:py-0"
+              >
+                <FaEnvelope className="w-4 h-4" /> Contact us
+              </Link>
             </li>
+            
+            {/* Words From Principal */}
             <li className="sm:inline-block">
-              <a href="#third-section" className="text-white no-underline transition-colors duration-500 hover:text-orange-500 text-sm sm:text-base md:text-[0.8em] block sm:inline-block py-1 sm:py-0">
-                Words From Principal
-              </a>
+              <Link
+                to="/principle"
+                className="flex items-center gap-2 text-white no-underline transition-colors duration-500 hover:text-orange-500 text-sm sm:text-base md:text-[0.8em] py-1 sm:py-0"
+              >
+                <FaUserTie className="w-4 h-4" /> Words From Principal
+              </Link>
             </li>
+            
+            {/* Terms & Conditions */}
             <li className="sm:inline-block">
               <a href="#" className="text-white no-underline transition-colors duration-500 hover:text-orange-500 text-sm sm:text-base md:text-[0.8em] block sm:inline-block py-1 sm:py-0">
                 Terms & Conditions

@@ -85,7 +85,7 @@ const Layout = ({ darkMode, toggleDarkMode }) => {
 
         <Route path="/feestructure" element={
           <ProtectedRoute>
-            <FeeStructure />
+            <FeeStructure isDarkMode={darkMode} />
             <Footer className="no-print" />
           </ProtectedRoute>
         }

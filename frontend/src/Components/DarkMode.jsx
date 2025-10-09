@@ -1,5 +1,6 @@
 // DarkMode.jsx
 const darkModeColors = {
+  body: "bg-[#0a0c23] text-white", // ← Add this line
   navbar: "bg-[#0f1036] text-white",
   mainNav: "bg-[#242250] text-white",
   hero: "bg-[#001022] bg-opacity-90 text-white",

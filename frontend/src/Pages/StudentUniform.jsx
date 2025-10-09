@@ -9,7 +9,7 @@ import uniform4 from '../../src/assets/uniform4.jpeg'
 import uniform5 from '../../src/assets/uniform5.jpeg'
 import uniform6 from '../../src/assets/uniform6.jpeg'
 
-const StudentUniform = () => {
+const StudentUniform = ({ isDarkMode }) => {
   const [isMobile, setIsMobile] = useState(false);
   const [activeImage, setActiveImage] = useState(null);
 
@@ -207,21 +207,31 @@ const StudentUniform = () => {
   };
 
   return (
-    <section className="w-full py-16 bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
+    <section className={`w-full py-16 min-h-screen ${
+      isDarkMode 
+        ? "bg-[#0a0c23] text-white" 
+        : "bg-gradient-to-br from-gray-50 to-blue-50 text-black"
+    }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <div className="text-center mb-16">
-          <h1 className="text-3xl font-bold text-[#263675] mb-6">
+          <h1 className={`text-3xl font-bold mb-6 ${
+            isDarkMode ? "text-white" : "text-[#263675]"
+          }`}>
             Student Uniform
           </h1>
-          <p className="text-md text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className={`text-md max-w-3xl mx-auto leading-relaxed ${
+            isDarkMode ? "text-gray-300" : "text-gray-600"
+          }`}>
             Below is our school dress sample that you need to buy or get stitched at any shop. Other items such as the tie, belt, and identity card will be provided by the school. Winter clothes like the school sports dress, hoodie, and sweaters will also be given by the school.
           </p>
         </div>
 
         {/* Top Row - 2 Photos */}
         <div className="mb-16">
-          <h2 className="text-3xl font-semibold text-gray-800 mb-8 text-center">
+          <h2 className={`text-3xl font-semibold mb-8 text-center ${
+            isDarkMode ? "text-white" : "text-gray-800"
+          }`}>
             Primary Uniforms
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -233,7 +243,9 @@ const StudentUniform = () => {
 
         {/* Bottom Row - 6 Photos */}
         <div className="mb-16">
-          <h2 className="text-3xl font-semibold text-gray-800 mb-8 text-center">
+          <h2 className={`text-3xl font-semibold mb-8 text-center ${
+            isDarkMode ? "text-white" : "text-gray-800"
+          }`}>
             Uniform Variations
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
@@ -252,7 +264,9 @@ const StudentUniform = () => {
             <FaDownload /> Download All Uniform Images
           </button>
 
-          <p className="text-gray-500 text-sm mt-3">
+          <p className={`text-sm mt-3 ${
+            isDarkMode ? "text-gray-400" : "text-gray-500"
+          }`}>
             This will download all 8 uniform images one by one
           </p>
         </div>

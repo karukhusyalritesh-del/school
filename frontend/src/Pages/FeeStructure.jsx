@@ -3,7 +3,7 @@ import bus from "../assets/bus.jpg";
 import studentread from "../assets/studentread.png";
 import feeIcon from "../assets/rupee.png";
 
-const FeeStructure = () => {
+const FeeStructure = ({ isDarkMode }) => {
   const [selectedClass, setSelectedClass] = useState("");
 
   const feeData = [
@@ -19,7 +19,6 @@ const FeeStructure = () => {
     { class: "Class 7", entranceFee: 1500, annualFee: 2000, monthlyFee: 2000, examFee: 700, beltFee: 200, longTie: 150, shortTie: 100, tcFee: 1500 },
   ];
 
-  // Transportation fees for different locations
   const transportationFees = [
     { location: "Lalpur", fee: 550 },
     { location: "Banauli", fee: 550 },
@@ -27,15 +26,42 @@ const FeeStructure = () => {
     { location: "Belha", fee: 550 }
   ];
 
-  // Print function
   const handlePrint = () => {
     window.print();
   };
 
+  // Dark mode class mapping for entire page
+  const darkModeStyles = {
+    container: isDarkMode ? "bg-[#0a0c23] text-white min-h-screen" : "bg-gray-50 text-black min-h-screen",
+    heading: isDarkMode ? "text-white" : "text-[#263675]",
+    table: isDarkMode
+      ? "min-w-full border border-gray-700 rounded-lg overflow-hidden shadow print-table bg-[#1b1b45] text-white"
+      : "min-w-full border border-gray-300 rounded-lg overflow-hidden shadow print-table bg-white text-gray-700",
+    th: isDarkMode
+      ? "border border-gray-600 px-4 py-2 bg-[#2c2c6c] text-white"
+      : "border border-gray-300 px-4 py-2 bg-gray-200 text-gray-700",
+    td: isDarkMode
+      ? "border border-gray-600 px-4 py-2 text-center bg-[#1b1b45] text-white"
+      : "border border-gray-300 px-4 py-2 text-center bg-white text-gray-700",
+    notes: isDarkMode
+      ? "mt-6 p-4 rounded-lg border border-gray-700 bg-[#1b1b45] text-gray-300"
+      : "mt-6 p-4 rounded-lg border border-gray-200 bg-gray-50 text-gray-600",
+    button: isDarkMode
+      ? "bg-[#2c2c6c] hover:bg-[#3a3a7c] text-white border border-gray-600"
+      : "bg-[#263675] hover:bg-blue-700 text-white border border-gray-300",
+    select: isDarkMode
+      ? "border border-gray-600 bg-[#242250] text-gray-300 focus:ring focus:ring-blue-300 rounded-md px-3 py-2 text-sm shadow-sm focus:outline-none"
+      : "border border-gray-300 bg-white text-gray-700 focus:ring focus:ring-blue-200 rounded-md px-3 py-2 text-sm shadow-sm focus:outline-none",
+    // Add styles for table row hover
+    tableRowHover: isDarkMode 
+      ? "hover:bg-[#2c2c6c] transition-colors duration-200" 
+      : "hover:bg-blue-50 transition-colors duration-200"
+  };
+
   return (
-    <div className="max-w-6xl mx-auto p-4 mb-10 mt-10 print-container">
-      {/* Heading with PNG icon */}
-      <h2 className="text-3xl text-[#263675] font-bold text-center mb-6 flex justify-center items-center gap-2 print-heading">
+    <div className={`max-w-6xl mx-auto p-4 mb-10 mt-10 print-container ${darkModeStyles.container}`}>
+      {/* Heading */}
+      <h2 className={`text-3xl font-bold text-center mb-6 flex justify-center items-center gap-2 print-heading ${darkModeStyles.heading}`}>
         <img src={feeIcon} alt="Fee Icon" className="w-8 h-8 print-icon" />
         School Fee Structure
       </h2>
@@ -47,14 +73,15 @@ const FeeStructure = () => {
           alt="Student Reading"
           className="w-32 h-32 object-cover rounded-lg"
         />
-
         <div className="relative">
           <img
             src={bus}
             alt="Bus"
             className="w-32 h-32 object-cover rounded-lg"
           />
-          <div className="absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-2 w-24 h-3 bg-black/20 rounded-full blur-md"></div>
+          <div className={`absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-2 w-24 h-3 rounded-full blur-md ${
+            isDarkMode ? "bg-white/20" : "bg-black/20"
+          }`}></div>
         </div>
       </div>
 
@@ -62,7 +89,7 @@ const FeeStructure = () => {
       <div className="flex justify-between items-center mb-4 no-print">
         <button
           onClick={handlePrint}
-          className="bg-[#263675] hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 flex items-center gap-2 cursor-pointer"
+          className={`font-medium py-2 px-4 rounded-md transition-colors duration-200 flex items-center gap-2 cursor-pointer ${darkModeStyles.button}`}
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
@@ -73,7 +100,7 @@ const FeeStructure = () => {
         <select
           value={selectedClass}
           onChange={(e) => setSelectedClass(e.target.value)}
-          className="border border-gray-300 rounded-md px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring focus:ring-blue-200"
+          className={darkModeStyles.select}
         >
           <option value="">All Classes</option>
           {feeData.map((item, i) => (
@@ -86,19 +113,19 @@ const FeeStructure = () => {
 
       {/* Fee Table */}
       <div className="overflow-x-auto print-landscape">
-        <table className="min-w-full border border-gray-300 rounded-lg overflow-hidden shadow print-table">
-          <thead className="bg-gray-200 text-gray-700">
+        <table className={darkModeStyles.table}>
+          <thead>
             <tr>
-              <th className="border px-4 py-2">Class</th>
-              <th className="border px-4 py-2">Entrance Fee</th>
-              <th className="border px-4 py-2">Annual Fee</th>
-              <th className="border px-4 py-2">Monthly Fee</th>
-              <th className="border px-4 py-2">Exam Fee</th>
-              <th className="border px-4 py-2">Belt Fee</th>
-              <th className="border px-4 py-2">Long Tie</th>
-              <th className="border px-4 py-2">Short Tie</th>
-              <th className="border px-4 py-2">T.C Fee</th>
-              <th className="border px-4 py-2">Transportation (Monthly)</th>
+              <th className={darkModeStyles.th}>Class</th>
+              <th className={darkModeStyles.th}>Entrance Fee</th>
+              <th className={darkModeStyles.th}>Annual Fee</th>
+              <th className={darkModeStyles.th}>Monthly Fee</th>
+              <th className={darkModeStyles.th}>Exam Fee</th>
+              <th className={darkModeStyles.th}>Belt Fee</th>
+              <th className={darkModeStyles.th}>Long Tie</th>
+              <th className={darkModeStyles.th}>Short Tie</th>
+              <th className={darkModeStyles.th}>T.C Fee</th>
+              <th className={darkModeStyles.th}>Transportation (Monthly)</th>
             </tr>
           </thead>
 
@@ -106,28 +133,19 @@ const FeeStructure = () => {
             {feeData
               .filter((item) => !selectedClass || item.class === selectedClass)
               .map((item, index) => (
-                <tr
-                  key={index}
-                  className="transition-colors duration-200 bg-white hover:bg-blue-50"
-                >
-                  {/* Class column */}
-                  <td className="border px-4 py-2 text-center font-medium">{item.class}</td>
-                  
-                  <td className="border px-4 py-2 text-center">₹{item.entranceFee}</td>
-                  <td className="border px-4 py-2 text-center">₹{item.annualFee}</td>
-                  <td className="border px-4 py-2 text-center">₹{item.monthlyFee}</td>
-                  <td className="border px-4 py-2 text-center">₹{item.examFee}</td>
-                  <td className="border px-4 py-2 text-center">₹{item.beltFee}</td>
-                  <td className="border px-4 py-2 text-center">₹{item.longTie}</td>
-                  <td className="border px-4 py-2 text-center">₹{item.shortTie}</td>
-                  <td className="border px-4 py-2 text-center">{item.tcFee === 0 ? "-" : `₹${item.tcFee}`}</td>
+                <tr key={index} className={darkModeStyles.tableRowHover}>
+                  <td className={darkModeStyles.td}>{item.class}</td>
+                  <td className={darkModeStyles.td}>₹{item.entranceFee}</td>
+                  <td className={darkModeStyles.td}>₹{item.annualFee}</td>
+                  <td className={darkModeStyles.td}>₹{item.monthlyFee}</td>
+                  <td className={darkModeStyles.td}>₹{item.examFee}</td>
+                  <td className={darkModeStyles.td}>₹{item.beltFee}</td>
+                  <td className={darkModeStyles.td}>₹{item.longTie}</td>
+                  <td className={darkModeStyles.td}>₹{item.shortTie}</td>
+                  <td className={darkModeStyles.td}>{item.tcFee === 0 ? "-" : `₹${item.tcFee}`}</td>
 
-                  {/* Transportation Fee with different locations */}
                   {index === 0 && (
-                    <td
-                      rowSpan={feeData.length}
-                      className="align-top px-4 py-2 text-center"
-                    >
+                    <td rowSpan={feeData.length} className={darkModeStyles.td}>
                       <div className="flex flex-col items-center gap-2">
                         {transportationFees.map((transport, i) => (
                           <div key={i} className="flex justify-between w-full px-2">
@@ -145,9 +163,9 @@ const FeeStructure = () => {
       </div>
 
       {/* Notes Section */}
-      <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200 print-notes">
-        <h3 className="text-lg font-semibold text-gray-800 mb-2">शुल्क सम्बन्धी नियमहरु :</h3>
-        <ul className="list-disc list-inside space-y-1 text-sm text-gray-600">
+      <div className={darkModeStyles.notes}>
+        <h3 className={`text-lg font-semibold mb-2 ${isDarkMode ? "text-white" : "text-gray-800"}`}>शुल्क सम्बन्धी नियमहरु :</h3>
+        <ul className="list-disc list-inside space-y-1 text-sm">
           <li>मासिक शुल्क बुझाउँदा अनिवार्य रूपमा बिल लिनु पर्ने छ।</li>
           <li>प्रत्येक महिनाको मासिक शुल्क सोही महिनाको अन्त्यमा (मसान्तभित्र) वा ५ गतेभित्र बुझाउँमा २% छुट दिइने छ।</li>
           <li>विद्यार्थीहरूको मासिक शुल्क एकमुष्ट ६ महिना सम्मको अग्रिम बुझाउँमा ५% र १२ महिनासम्मको बुझाउँमा १०% सहुलियत छुट दिइने छ।</li>

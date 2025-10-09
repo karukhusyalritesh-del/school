@@ -22,14 +22,14 @@ const FloatingMenu = ({ onToggleDarkMode }) => {
           }`}
         >
           <a
-            href="tel:9819999475"
+            href="tel:+977 9821775780"
             className="w-12 h-12 rounded-full bg-green-600 flex items-center justify-center text-white shadow-md hover:scale-110 transition-transform duration-300 cursor-pointer"
             title="Call Us"
           >
             <FaPhoneAlt size={20} />
           </a>
           <a
-            href="mailto:riteshtharu58@gmail.com?subject=Hello%20there&body=This%20is%20a%20pre-filled%20message"
+            href="mailto:vidyainfonepal@gmail.com?subject=Hello%20there&body=This%20is%20a%20pre-filled%20message"
             className="w-12 h-12 rounded-full bg-red-500 flex items-center justify-center text-white shadow-md hover:scale-110 transition-transform duration-300 cursor-pointer"
             title="Send Email"
           >

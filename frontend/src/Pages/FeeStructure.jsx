@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import bus from "../assets/bus.jpg";
+import bus from "../assets/bus.png";
 import studentread from "../assets/studentread.png";
 import feeIcon from "../assets/rupee.png";
 
@@ -59,9 +59,9 @@ const FeeStructure = ({ isDarkMode }) => {
   };
 
   return (
-    <div className={`max-w-6xl mx-auto p-4 mb-10 mt-10 print-container ${darkModeStyles.container}`}>
+    <div className={`max-w-6xl mx-auto p-4 mb-10 print-container ${darkModeStyles.container}`}>
       {/* Heading */}
-      <h2 className={`text-3xl font-bold text-center mb-6 flex justify-center items-center gap-2 print-heading ${darkModeStyles.heading}`}>
+      <h2 className={`text-3xl font-bold text-center pt-10 mb-6 flex justify-center items-center gap-2 print-heading ${darkModeStyles.heading}`}>
         <img src={feeIcon} alt="Fee Icon" className="w-8 h-8 print-icon" />
         School Fee Structure
       </h2>

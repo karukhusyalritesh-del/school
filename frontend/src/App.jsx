@@ -26,6 +26,8 @@ import SocialSidebar from "./Components/SocialSidebar";
 import NoticePage from "./Pages/Notice";
 import AuthForm from "./Pages/login";
 import AdminAuth from "./Pages/adminLogin";
+import OTPVerification from "./Pages/OtpVerification"; 
+import ResetPassword from "./Pages/ResetPassword"; 
 
 // Protected Route
 import ProtectedRoute from "./Components/ProtectedRoute";
@@ -35,29 +37,24 @@ import darkModeColors from "./Components/DarkMode";
 import FeeStructure from "./Pages/FeeStructure";
 import StudentUniform from "./Pages/StudentUniform";
 
-//  Helper component to handle layout logic
+// Helper component to handle layout logic
 const Layout = ({ darkMode, toggleDarkMode }) => {
   const location = useLocation();
-  const hideMainNav = location.pathname === "/notice"; // hide on notice page
+  const hideMainNav = location.pathname === "/notice"; 
 
   return (
-    <div
-      className={`${
-        darkMode ? darkModeColors.body : "bg-white text-black"
-      } min-h-screen`}
-    >
+    <div className="min-h-screen"> {/* Remove dark mode from global wrapper */}
       <FirstNavbar isDarkMode={darkMode} className="no-print" />
 
-      {/* Only show MainNav  */}
+      {/* Only show MainNav */}
       <MainNav isDarkMode={darkMode} className="no-print" />
 
       <ToastContainer className="no-print" />
-
       <Routes>
         <Route
           path="/"
           element={
-            <>
+            <div className={darkMode ? darkModeColors.body : "bg-white text-black"}>
               <Hero isDarkMode={darkMode} />
               <Card isDarkMode={darkMode} />
               <PrincipleMssg isDarkMode={darkMode} />
@@ -67,47 +64,54 @@ const Layout = ({ darkMode, toggleDarkMode }) => {
               <WhyVidyaSchool isDarkMode={darkMode} />
               <ContactForm isDarkMode={darkMode} />
               <Footer isDarkMode={darkMode} className="no-print" />
-            </>
+            </div>
           }
         />
 
-        <Route path="/login" element={<AuthForm isDarkMode={darkMode} />} />
-        <Route path="/admin" element={<AdminAuth isDarkMode={darkMode} />} />
+        {/* Auth Routes - No dark mode, always light */}
+        <Route path="/login" element={<AuthForm />} />
+        <Route path="/admin" element={<AdminAuth />} />
+        <Route path="/verify-otp" element={<OTPVerification />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
 
+        {/* Protected Routes with Dark Mode */}
         <Route
           path="/notice"
           element={
             <ProtectedRoute>
-              <NoticePage isDarkMode={darkMode} />
+              <div className={darkMode ? darkModeColors.body : "bg-white text-black min-h-screen"}>
+                <NoticePage isDarkMode={darkMode} />
+              </div>
             </ProtectedRoute>
           }
         />
 
-        <Route path="/feestructure" element={
-          <ProtectedRoute>
-            <FeeStructure isDarkMode={darkMode} />
-            <Footer className="no-print" />
-          </ProtectedRoute>
-        }
+        <Route
+          path="/feestructure"
+          element={
+            <ProtectedRoute>
+              <div className={darkMode ? darkModeColors.body : "bg-white text-black min-h-screen"}>
+                <FeeStructure isDarkMode={darkMode} />
+                <Footer className="no-print" />
+              </div>
+            </ProtectedRoute>
+          }
         />
 
-                <Route
+        <Route
           path="/uniform"
           element={
-            <>
-            <StudentUniform isDarkMode={darkMode} />
-            <Footer isDarkMode={darkMode} className="no-print" />
-            </>
-              
-              
-
+            <div className={darkMode ? darkModeColors.body : "bg-white text-black min-h-screen"}>
+              <StudentUniform isDarkMode={darkMode} />
+              <Footer isDarkMode={darkMode} className="no-print" />
+            </div>
           }
         />
 
         <Route
           path="/principle"
           element={
-            <>
+            <div className={darkMode ? darkModeColors.body : "bg-white text-black"}>
               <Hero isDarkMode={darkMode} />
               <Card isDarkMode={darkMode} />
               <PrincipleMssg isDarkMode={darkMode} />
@@ -117,14 +121,14 @@ const Layout = ({ darkMode, toggleDarkMode }) => {
               <WhyVidyaSchool isDarkMode={darkMode} />
               <ContactForm isDarkMode={darkMode} />
               <Footer isDarkMode={darkMode} className="no-print" />
-            </>
+            </div>
           }
         />
 
         <Route
           path="/contact"
           element={
-            <>
+            <div className={darkMode ? darkModeColors.body : "bg-white text-black"}>
               <Hero isDarkMode={darkMode} />
               <Card isDarkMode={darkMode} />
               <PrincipleMssg isDarkMode={darkMode} />
@@ -134,14 +138,14 @@ const Layout = ({ darkMode, toggleDarkMode }) => {
               <WhyVidyaSchool isDarkMode={darkMode} />
               <ContactForm isDarkMode={darkMode} />
               <Footer isDarkMode={darkMode} className="no-print" />
-            </>
+            </div>
           }
         />
 
         <Route
           path="/activities"
           element={
-            <>
+            <div className={darkMode ? darkModeColors.body : "bg-white text-black"}>
               <Hero isDarkMode={darkMode} />
               <Card isDarkMode={darkMode} />
               <PrincipleMssg isDarkMode={darkMode} />
@@ -151,14 +155,14 @@ const Layout = ({ darkMode, toggleDarkMode }) => {
               <WhyVidyaSchool isDarkMode={darkMode} />
               <ContactForm isDarkMode={darkMode} />
               <Footer isDarkMode={darkMode} className="no-print" />
-            </>
+            </div>
           }
         />
 
         <Route
           path="/environment"
           element={
-            <>
+            <div className={darkMode ? darkModeColors.body : "bg-white text-black"}>
               <Hero isDarkMode={darkMode} />
               <Card isDarkMode={darkMode} />
               <PrincipleMssg isDarkMode={darkMode} />
@@ -168,14 +172,14 @@ const Layout = ({ darkMode, toggleDarkMode }) => {
               <WhyVidyaSchool isDarkMode={darkMode} />
               <ContactForm isDarkMode={darkMode} />
               <Footer isDarkMode={darkMode} className="no-print" />
-            </>
+            </div>
           }
         />
 
         <Route
           path="/teachers"
           element={
-            <>
+            <div className={darkMode ? darkModeColors.body : "bg-white text-black"}>
               <Hero isDarkMode={darkMode} />
               <Card isDarkMode={darkMode} />
               <PrincipleMssg isDarkMode={darkMode} />
@@ -185,12 +189,12 @@ const Layout = ({ darkMode, toggleDarkMode }) => {
               <WhyVidyaSchool isDarkMode={darkMode} />
               <ContactForm isDarkMode={darkMode} />
               <Footer isDarkMode={darkMode} className="no-print" />
-            </>
+            </div>
           }
         />
       </Routes>
 
-      <FloatingMenu onToggleDarkMode={toggleDarkMode} className="no-print" />
+      <FloatingMenu onToggleDarkMode={toggleDarkMode} isDarkMode={darkMode} className="no-print" />
       <SocialSidebar className="no-print" />
     </div>
   );

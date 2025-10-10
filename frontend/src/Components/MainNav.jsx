@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import logo from "../assets/logo.jpg";
@@ -22,7 +22,32 @@ const MainNav = ({ isDarkMode }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const isLoggedIn = !!localStorage.getItem("token");
+  
+  // Create ref for sidebar
+  const sidebarRef = useRef(null);
 
+  // Close sidebar when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuOpen && sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        setMenuOpen(false);
+      }
+    };
+
+    // Add event listener when sidebar is open
+    if (menuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("touchstart", handleClickOutside);
+    }
+
+    // Cleanup
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, [menuOpen]);
+
+  // Handle body overflow
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "auto";
   }, [menuOpen]);
@@ -61,66 +86,64 @@ const MainNav = ({ isDarkMode }) => {
         </li>
 
         {/* About Us Dropdown */}
-<li className="relative">
-  <button
-    className={`flex items-center gap-2 cursor-pointer whitespace-nowrap ${
-      isDarkMode ? "hover:text-gray-300" : "hover:text-[#263675]"
-    }`}
-    onClick={() => setDropdownOpen(!dropdownOpen)}
-  >
-    <FaInfoCircle /> About Us
-    <FaChevronDown
-      className={`ml-1 transition-transform duration-200 ${
-        dropdownOpen ? "rotate-180" : ""
-      }`}
-    />
-  </button>
+        <li className="relative">
+          <button
+            className={`flex items-center gap-2 cursor-pointer whitespace-nowrap ${
+              isDarkMode ? "hover:text-gray-300" : "hover:text-[#263675]"
+            }`}
+            onClick={() => setDropdownOpen(!dropdownOpen)}
+          >
+            <FaInfoCircle /> About Us
+            <FaChevronDown
+              className={`ml-1 transition-transform duration-200 ${
+                dropdownOpen ? "rotate-180" : ""
+              }`}
+            />
+          </button>
 
-  <ul
-    className={`absolute -left-12 mt-5 lg:pt-3 lg:pb-3 w-60 shadow-md rounded-md transition-all duration-300 overflow-hidden
-      ${isDarkMode ? "bg-[#242250] text-white" : "bg-[#f8f9fa] text-black"}
-      ${dropdownOpen ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-5 scale-95 pointer-events-none"}
-      lg:mr-24
-    `}
-  >
-    <li className="w-full flex justify-center group">
-      <div className="w-52 mx-auto relative overflow-hidden rounded">
-        <Link
-          to="/activities"
-          className="block w-full text-center px-4 py-3 hover:bg-blue-200/50 hover:backdrop-blur-md rounded transition-all duration-300 transform group-hover:translate-x-[-8px] hover:text-[#263675]"
-          onClick={() => setDropdownOpen(false)}
-        >
-          Activities
-        </Link>
-      </div>
-    </li>
-    <li className="w-full flex justify-center group">
-      <div className="w-52 mx-auto relative overflow-hidden rounded">
-        <Link
-          to="/environment"
-          className="block w-full text-center px-4 py-3 hover:bg-blue-200/50 hover:backdrop-blur-md hover:text-[#263675] rounded transition-all duration-300 transform group-hover:translate-x-[-8px]"
-          onClick={() => setDropdownOpen(false)}
-        >
-          Environment
-        </Link>
-      </div>
-    </li>
-    <li className="w-full flex justify-center group">
-      <div className="w-52 mx-auto relative overflow-hidden rounded">
-        <Link
-          to="/teachers"
-          className="block w-full text-center px-4 py-3 hover:bg-blue-200/50 hover:backdrop-blur-md hover:text-[#263675] rounded transition-all duration-300 transform group-hover:translate-x-[-8px]"
-          onClick={() => setDropdownOpen(false)}
-        >
-          Teachers
-        </Link>
-      </div>
-    </li>
-  </ul>
-</li>
+          <ul
+            className={`absolute -left-12 mt-5 lg:pt-3 lg:pb-3 w-60 shadow-md rounded-md transition-all duration-300 overflow-hidden
+              ${isDarkMode ? "bg-[#242250] text-white" : "bg-[#f8f9fa] text-black"}
+              ${dropdownOpen ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-5 scale-95 pointer-events-none"}
+              lg:mr-24
+            `}
+          >
+            <li className="w-full flex justify-center group">
+              <div className="w-52 mx-auto relative overflow-hidden rounded">
+                <Link
+                  to="/activities"
+                  className="block w-full text-center px-4 py-3 hover:bg-blue-200/50 hover:backdrop-blur-md hover:text-[#263675] rounded transition-all duration-300 transform group-hover:translate-x-[-8px]"
+                  onClick={() => setDropdownOpen(false)}
+                >
+                  Activities
+                </Link>
+              </div>
+            </li>
+            <li className="w-full flex justify-center group">
+              <div className="w-52 mx-auto relative overflow-hidden rounded">
+                <Link
+                  to="/environment"
+                  className="block w-full text-center px-4 py-3 hover:bg-blue-200/50 hover:backdrop-blur-md hover:text-[#263675] rounded transition-all duration-300 transform group-hover:translate-x-[-8px]"
+                  onClick={() => setDropdownOpen(false)}
+                >
+                  Environment
+                </Link>
+              </div>
+            </li>
+            <li className="w-full flex justify-center group">
+              <div className="w-52 mx-auto relative overflow-hidden rounded">
+                <Link
+                  to="/teachers"
+                  className="block w-full text-center px-4 py-3 hover:bg-blue-200/50 hover:backdrop-blur-md hover:text-[#263675] rounded transition-all duration-300 transform group-hover:translate-x-[-8px]"
+                  onClick={() => setDropdownOpen(false)}
+                >
+                  Teachers
+                </Link>
+              </div>
+            </li>
+          </ul>
+        </li>
 
-
-        {/* Other Menu Items */}
         <li>
           <Link
             to="/principle"
@@ -149,7 +172,7 @@ const MainNav = ({ isDarkMode }) => {
           </button>
         </li>
 
-                <li>
+        <li>
           <button
             onClick={() => {
               if (isLoggedIn) {
@@ -211,9 +234,18 @@ const MainNav = ({ isDarkMode }) => {
         <span className={`${isDarkMode ? "bg-white" : "bg-black"} block w-6 h-0.5`}></span>
       </button>
 
+      {/* Backdrop Overlay - Click outside to close */}
+      {menuOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          onClick={() => setMenuOpen(false)}
+        />
+      )}
+
       {/* Mobile Sidebar */}
       <div
-        className={`fixed top-0 left-0 h-full w-1/2 ${
+        ref={sidebarRef}
+        className={`fixed top-0 left-0 h-full w-3/4 max-w-sm ${
           isDarkMode ? "bg-[#242250] text-white" : "bg-white text-black"
         } shadow-md flex flex-col z-50 transform transition-transform duration-300 ${
           menuOpen ? "translate-x-0" : "-translate-x-full"
@@ -221,7 +253,10 @@ const MainNav = ({ isDarkMode }) => {
       >
         <div className="flex items-center justify-between px-6 py-4 border-b">
           <img src={logo} alt="Logo" className="h-12 mix-blend-multiply" />
-          <button onClick={() => setMenuOpen(false)}>
+          <button 
+            onClick={() => setMenuOpen(false)}
+            className="p-2 rounded-full hover:bg-gray-200 hover:bg-opacity-20 transition"
+          >
             <FaTimes className={`${isDarkMode ? "text-white" : "text-black"} text-xl`} />
           </button>
         </div>
@@ -233,17 +268,17 @@ const MainNav = ({ isDarkMode }) => {
                 handleNav("home");
                 setMenuOpen(false);
               }}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 hover:text-[#263675] transition-colors"
             >
               <FaHome /> Home
             </button>
           </li>
 
           {/* Mobile Dropdown */}
-          <li>
+          <li className="w-full">
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 hover:text-[#263675] transition-colors"
             >
               <FaInfoCircle /> About
               <FaChevronDown
@@ -254,7 +289,7 @@ const MainNav = ({ isDarkMode }) => {
             </button>
 
             {dropdownOpen && (
-              <ul className="mt-2 space-y-2 text-base pl-4">
+              <ul className="mt-2 space-y-2 text-base pl-4 w-full">
                 <li>
                   <Link
                     to="/activities"
@@ -263,6 +298,7 @@ const MainNav = ({ isDarkMode }) => {
                       setMenuOpen(false);
                       setDropdownOpen(false);
                     }}
+                    className="block py-1 hover:text-[#263675] transition-colors"
                   >
                     Activities
                   </Link>
@@ -275,6 +311,7 @@ const MainNav = ({ isDarkMode }) => {
                       setMenuOpen(false);
                       setDropdownOpen(false);
                     }}
+                    className="block py-1 hover:text-[#263675] transition-colors"
                   >
                     Environment
                   </Link>
@@ -287,6 +324,7 @@ const MainNav = ({ isDarkMode }) => {
                       setMenuOpen(false);
                       setDropdownOpen(false);
                     }}
+                    className="block py-1 hover:text-[#263675] transition-colors"
                   >
                     Teachers
                   </Link>
@@ -298,7 +336,7 @@ const MainNav = ({ isDarkMode }) => {
           <li>
             <Link
               to="/principle"
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 hover:text-[#263675] transition-colors"
               onClick={() => {
                 handleNav("third-section");
                 setMenuOpen(false);
@@ -307,6 +345,7 @@ const MainNav = ({ isDarkMode }) => {
               <FaUserTie /> Founder
             </Link>
           </li>
+
           <li>
             <button
               onClick={() => {
@@ -317,12 +356,13 @@ const MainNav = ({ isDarkMode }) => {
                 }
                 setMenuOpen(false);
               }}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 hover:text-[#263675] transition-colors"
             >
               <FaBell /> Notice
             </button>
           </li>
-                    <li>
+
+          <li>
             <button
               onClick={() => {
                 if (isLoggedIn) {
@@ -332,19 +372,17 @@ const MainNav = ({ isDarkMode }) => {
                 }
                 setMenuOpen(false);
               }}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 hover:text-[#263675] transition-colors"
             >
               <FaMoneyBillWave /> Fee
             </button>
           </li>
 
-            <li>
+          <li>
             <Link
               to="/uniform"
-              className="flex items-center gap-2"
-              onClick={() => {
-                setMenuOpen(false);
-              }}
+              className="flex items-center gap-2 hover:text-[#263675] transition-colors"
+              onClick={() => setMenuOpen(false)}
             >
               <FaEnvelope /> Uniform
             </Link>
@@ -353,7 +391,7 @@ const MainNav = ({ isDarkMode }) => {
           <li>
             <Link
               to="/contact"
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 hover:text-[#263675] transition-colors"
               onClick={() => {
                 handleNav("contact");
                 setMenuOpen(false);
@@ -368,14 +406,14 @@ const MainNav = ({ isDarkMode }) => {
         <div className="flex flex-col items-start mb-8 px-6 space-y-3">
           <Link
             to="/admin"
-            className="flex items-center gap-2 px-6 py-2 bg-gray-800 text-white rounded hover:bg-gray-900 transition"
+            className="flex items-center gap-2 px-6 py-2 bg-gray-800 text-white rounded hover:bg-gray-900 transition w-full justify-center"
             onClick={() => setMenuOpen(false)}
           >
             <FaUser /> Admin
           </Link>
           <Link
             to="/login"
-            className="flex items-center gap-2 px-6 py-2 bg-[#263675] text-white rounded hover:bg-blue-700 transition"
+            className="flex items-center gap-2 px-6 py-2 bg-[#263675] text-white rounded hover:bg-blue-700 transition w-full justify-center"
             onClick={() => setMenuOpen(false)}
           >
             Login

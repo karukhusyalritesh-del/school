@@ -1,7 +1,7 @@
 import React from "react";
-import student from "../assets/student.png"; // foreground image
-import studentbg from "../assets/studentbg.png"; // background image
-import darkModeColors from "./DarkMode"; // ✅ import dark mode colors
+import student from "../assets/student.png"; 
+import studentbg from "../assets/studentbg.png"; 
+import darkModeColors from "./DarkMode"; 
 
 const Hero = ({ isDarkMode }) => {
   return (

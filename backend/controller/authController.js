@@ -52,7 +52,7 @@ exports.signup = async (req, res) => {
     user = new User({ name, email, password: hashedPassword, role });
     await user.save();
 
-    // ✅ Removed email sending completely
+    // Removed email sending completely
     // Notify user that verification is required by school
     res.status(201).json({ 
       message: 'User registered successfully. Your account needs to be verified by the school before login.' 
@@ -92,14 +92,13 @@ exports.login = async (req, res) => {
     if (!user) return res.status(400).json({ message: 'Invalid credentials' });
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
+    if (!isMatch) return res.status(400).json({ message: 'Invalid password' });
 
     if (!user.isVerified)
       return res.status(401).json({ message: 'Please verify your email before logging in.' });
 
-    // ✅ Changed: Remove expiration to keep users logged in until manual logout
+    // Changed: Remove expiration to keep users logged in until manual logout
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
-    // Alternative: If you prefer a very long expiration instead:
     // const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '365d' });
 
     res.json({ token, user: { id: user._id, name: user.name, email: user.email, role: user.role } });
@@ -136,10 +135,42 @@ exports.forgotPassword = async (req, res) => {
       subject: 'Your OTP for password reset',
       text: `Your OTP is: ${otp}. It will expire in 10 minutes.`
     };
+    console.log("Sending OTP email to:", email);
 
     await transporter.sendMail(mailOptions);
 
     res.json({ message: 'OTP sent to your email' });
+  } catch (err) {
+    console.error("Forgot password error:", err);
+
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+// Add this new function to verify OTP
+exports.verifyOtp = async (req, res) => {
+  const { email, otp } = req.body;
+
+  try {
+    const record = otpStore[email];
+    if (!record) {
+      return res.status(400).json({ message: 'OTP not found. Please request again.' });
+    }
+
+    if (record.expires < Date.now()) {
+      delete otpStore[email];
+      return res.status(400).json({ message: 'OTP expired. Please request again.' });
+    }
+
+    if (parseInt(otp) !== record.otp) {
+      return res.status(400).json({ message: 'Invalid OTP' });
+    }
+
+    // Mark OTP as verified (you can add a flag or just proceed)
+    record.verified = true;
+
+    res.json({ message: 'OTP verified successfully' });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server error' });
@@ -148,7 +179,7 @@ exports.forgotPassword = async (req, res) => {
 
 // Reset Password using OTP
 exports.resetPassword = async (req, res) => {
-  const { email, otp, newPassword } = req.body;
+  const { email, otp, newPassword } = req.body; // Make sure otp is included
 
   try {
     const record = otpStore[email];

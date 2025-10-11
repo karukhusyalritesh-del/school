@@ -22,6 +22,8 @@ import Footer from "./Components/Footer";
 import FloatingMenu from "./Components/FloatingMenu";
 import SocialSidebar from "./Components/SocialSidebar";
 
+
+
 // Pages
 import NoticePage from "./Pages/Notice";
 import AuthForm from "./Pages/login";
@@ -36,6 +38,7 @@ import ProtectedRoute from "./Components/ProtectedRoute";
 import darkModeColors from "./Components/DarkMode";
 import FeeStructure from "./Pages/FeeStructure";
 import StudentUniform from "./Pages/StudentUniform";
+import AdmissionAdCard from "./Components/AdmissionBanner";
 
 // Helper component to handle layout logic
 const Layout = ({ darkMode, toggleDarkMode }) => {
@@ -50,6 +53,7 @@ const Layout = ({ darkMode, toggleDarkMode }) => {
       <MainNav isDarkMode={darkMode} className="no-print" />
 
       <ToastContainer className="no-print" />
+       <AdmissionAdCard />
       <Routes>
         <Route
           path="/"

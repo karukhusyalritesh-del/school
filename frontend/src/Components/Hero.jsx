@@ -2,6 +2,7 @@ import React from "react";
 import student from "../assets/student.png"; 
 import studentbg from "../assets/studentbg.png"; 
 import darkModeColors from "./DarkMode"; 
+import useForceDesktop from "../utils/UserForceDesktop"
 
 const Hero = ({ isDarkMode }) => {
   return (
@@ -35,7 +36,7 @@ const Hero = ({ isDarkMode }) => {
         <img
           src={student}
           alt="Foreground"
-          className="w-3/4 lg:w-3/5 relative z-20"
+          className="w-1/2 lg:w-3/5 relative z-20"
         />
       </div>
     </section>

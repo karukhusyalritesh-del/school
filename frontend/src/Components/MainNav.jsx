@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import logo from "../assets/logo.jpg";
 import Footer from "./Footer";
+import useForceDesktop from "../utils/UserForceDesktop"
 import {
   FaHome,
   FaInfoCircle,
@@ -12,8 +13,10 @@ import {
   FaBell,
   FaUser,
   FaTimes,
-  FaMoneyBillWave
+  FaMoneyBillWave,
 } from "react-icons/fa";
+import { RiShirtLine } from "react-icons/ri";
+
 import darkModeColors from "./DarkMode";
 
 const MainNav = ({ isDarkMode }) => {
@@ -196,7 +199,7 @@ const MainNav = ({ isDarkMode }) => {
               isDarkMode ? "hover:text-gray-300" : "hover:text-[#263675]"
             }`}
           >
-            <FaEnvelope /> Uniform
+            <RiShirtLine /> Uniform
           </Link>
         </li>
 
@@ -384,7 +387,7 @@ const MainNav = ({ isDarkMode }) => {
               className="flex items-center gap-2 hover:text-[#263675] transition-colors"
               onClick={() => setMenuOpen(false)}
             >
-              <FaEnvelope /> Uniform
+              <RiShirtLine /> Uniform
             </Link>
           </li>
 

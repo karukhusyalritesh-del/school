@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import PencilBg from "../assets/pencil.jpg"; 
 import { FaPencilAlt, FaUserGraduate, FaBaseballBall } from "react-icons/fa";
 import darkModeColors from "./DarkMode";
+import useForceDesktop from "../utils/UserForceDesktop"
 
 const Card = ({ isDarkMode }) => {
   const sectionRef = useRef(null);

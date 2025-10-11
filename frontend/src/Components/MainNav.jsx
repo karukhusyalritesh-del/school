@@ -3,7 +3,6 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import logo from "../assets/logo.jpg";
 import Footer from "./Footer";
-import useForceDesktop from "../utils/UserForceDesktop"
 import {
   FaHome,
   FaInfoCircle,

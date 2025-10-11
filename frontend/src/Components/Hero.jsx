@@ -2,7 +2,6 @@ import React from "react";
 import student from "../assets/student.png"; 
 import studentbg from "../assets/studentbg.png"; 
 import darkModeColors from "./DarkMode"; 
-import useForceDesktop from "../utils/UserForceDesktop"
 
 const Hero = ({ isDarkMode }) => {
   return (

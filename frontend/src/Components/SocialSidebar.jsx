@@ -1,25 +1,28 @@
 import React from 'react';
-import { FaFacebookF, FaYoutube, FaLinkedinIn } from 'react-icons/fa';
+import { FaWhatsapp, FaViber, FaFacebookMessenger } from 'react-icons/fa';
 
 const SocialSidebar = () => {
+  // 🎯 Set icon size in one place
+  const iconSize = 22; // change this number (e.g. 20, 25, 30) to resize all icons
+
   const socialLinks = [
     {
-      href: "https://facebook.com",
-      Icon: FaFacebookF,
-      bgColor: "bg-[#1DA1F2]",
-      name: "Facebook"
+      href: "https://wa.me/9821775780",
+      Icon: FaWhatsapp,
+      bgColor: "bg-[#25D366]", // WhatsApp green
+      name: "WhatsApp"
     },
     {
-      href: "https://youtube.com",
-      Icon: FaYoutube,
-      bgColor: "bg-[#FF0000]",
-      name: "YouTube"
+      href: "viber://chat?number=%2B9779821775780",
+      Icon: FaViber,
+      bgColor: "bg-[#7360F2]", // Viber purple
+      name: "Viber"
     },
     {
-      href: "https://linkedin.com",
-      Icon: FaLinkedinIn,
-      bgColor: "bg-[#0077B5]",
-      name: "LinkedIn"
+      href: "https://m.me/yourusername", // Messenger link
+      Icon: FaFacebookMessenger,
+      bgColor: "bg-[#0084FF]", // Messenger blue
+      name: "Messenger"
     }
   ];
 
@@ -35,7 +38,7 @@ const SocialSidebar = () => {
               transition-all duration-500 ease-in-out 
               hover:scale-125 hover:-translate-y-2.5 
               hover:bg-black hover:bg-opacity-50 
-              ${link.bgColor}
+              cursor-pointer ${link.bgColor}
             `}
           >
             <a 
@@ -45,7 +48,7 @@ const SocialSidebar = () => {
               className="block text-white"
               aria-label={link.name}
             >
-              <link.Icon className="w-5 h-5" />
+              <link.Icon size={iconSize} /> {/* 👈 Use one size for all */}
             </a>
           </li>
         ))}

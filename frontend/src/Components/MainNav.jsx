@@ -227,14 +227,18 @@ const MainNav = ({ isDarkMode }) => {
       </ul>
 
       {/* Mobile Menu Icon */}
-      <button
-        className="lg:hidden flex flex-col space-y-1 ml-auto"
-        onClick={() => setMenuOpen(!menuOpen)}
-      >
-        <span className={`${isDarkMode ? "bg-white" : "bg-black"} block w-6 h-0.5`}></span>
-        <span className={`${isDarkMode ? "bg-white" : "bg-black"} block w-6 h-0.5`}></span>
-        <span className={`${isDarkMode ? "bg-white" : "bg-black"} block w-6 h-0.5`}></span>
-      </button>
+<button
+  onClick={() => setMenuOpen(!menuOpen)}
+  className="
+    lg:hidden flex flex-col space-y-1 ml-auto cursor-pointer
+    p-2 rounded-full hover:bg-gray-200 hover:bg-opacity-20 transition
+  "
+>
+  <span className={`${isDarkMode ? "bg-white" : "bg-black"} block w-6 h-0.5`}></span>
+  <span className={`${isDarkMode ? "bg-white" : "bg-black"} block w-6 h-0.5`}></span>
+  <span className={`${isDarkMode ? "bg-white" : "bg-black"} block w-6 h-0.5`}></span>
+</button>
+
 
       {/* Backdrop Overlay - Click outside to close */}
       {menuOpen && (
@@ -257,7 +261,7 @@ const MainNav = ({ isDarkMode }) => {
           <img src={logo} alt="Logo" className="h-12 mix-blend-multiply" />
           <button 
             onClick={() => setMenuOpen(false)}
-            className="p-2 rounded-full hover:bg-gray-200 hover:bg-opacity-20 transition"
+            className="p-2 rounded-full hover:bg-gray-200 hover:bg-opacity-20 transition cursor-pointer"
           >
             <FaTimes className={`${isDarkMode ? "text-white" : "text-black"} text-xl`} />
           </button>
@@ -270,7 +274,7 @@ const MainNav = ({ isDarkMode }) => {
                 handleNav("home");
                 setMenuOpen(false);
               }}
-              className="flex items-center gap-2 hover:text-[#263675] transition-colors"
+              className="flex items-center gap-2 hover:text-[#263675] transition-colors cursor-pointer"
             >
               <FaHome /> Home
             </button>
@@ -280,7 +284,7 @@ const MainNav = ({ isDarkMode }) => {
           <li className="w-full">
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
-              className="flex items-center gap-2 hover:text-[#263675] transition-colors"
+              className="flex items-center gap-2 hover:text-[#263675] transition-colors cursor-pointer"
             >
               <FaInfoCircle /> About
               <FaChevronDown
@@ -358,7 +362,7 @@ const MainNav = ({ isDarkMode }) => {
                 }
                 setMenuOpen(false);
               }}
-              className="flex items-center gap-2 hover:text-[#263675] transition-colors"
+              className="flex items-center gap-2 hover:text-[#263675] transition-colors cursor-pointer"
             >
               <FaBell /> Notice
             </button>
@@ -374,7 +378,7 @@ const MainNav = ({ isDarkMode }) => {
                 }
                 setMenuOpen(false);
               }}
-              className="flex items-center gap-2 hover:text-[#263675] transition-colors"
+              className="flex items-center gap-2 hover:text-[#263675] transition-colors cursor-pointer"
             >
               <FaMoneyBillWave /> Fee
             </button>

@@ -56,7 +56,7 @@ const AuthForm = () => {
             email: formData.email,
           });
           setMessage(res.data.message);
-          setShowOtpVerification(true); // Show OTP input
+          setShowOtpVerification(true); 
         }
       } else if (isLogin) {
         // Login

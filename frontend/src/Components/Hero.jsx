@@ -1,18 +1,18 @@
 import React from "react";
-import student from "../assets/student.png"; 
-import studentbg from "../assets/studentbg.png"; 
-import darkModeColors from "./DarkMode"; 
+import student from "../assets/student.png";
+import studentbg from "../assets/studentbg.png";
+import darkModeColors from "./DarkMode";
 
 const Hero = ({ isDarkMode }) => {
   return (
     <section
       id="home"
-      className={`flex flex-col lg:flex-row items-center px-6 lg:px-12 min-h-[82vh] relative ${
+      className={`flex flex-col sm:flex-col md:flex-col lg:flex-row items-center px-6 lg:px-12 min-h-[86vh] relative ${
         isDarkMode ? darkModeColors.hero : "bg-[#e3e5f4] text-black"
       }`}
     >
-      {/* Left text / top on mobile and tablet */}
-      <div className="flex-1 px-4 lg:px-0 mt-8 lg:mt-0">
+      {/* Left text */}
+      <div className="flex-1 px-4 lg:px-0 mt-8 lg:mt-0 text-center lg:text-left">
         <h1
           className={`text-3xl lg:text-5xl py-6 font-bold tracking-[2px] lg:tracking-[4px] whitespace-nowrap ${
             isDarkMode ? "text-white" : "text-[#263675]"
@@ -20,12 +20,16 @@ const Hero = ({ isDarkMode }) => {
         >
           Welcome to Our School
         </h1>
-        <p className={`${isDarkMode ? "text-white" : "text-black"} text-base lg:text-lg leading-relaxed`}>
+        <p
+          className={`${
+            isDarkMode ? "text-white" : "text-black"
+          } text-base lg:text-lg leading-relaxed`}
+        >
           Vidya Niketan Academy is a school that gives better education to all students. We have 10+ years of experience in teaching and taking care of children. Our school is always clean and well-managed, so students can study in a good and safe place. The students who studied here have a strong base and are doing well in higher studies. We help children learn better so they can have a good life in the future. We believe in giving every child the best start in their education journey.
         </p>
       </div>
 
-      {/* Right images / below text on mobile and tablet */}
+      {/* Right image */}
       <div className="flex-1 relative flex items-center justify-center w-full lg:w-auto mt-8 lg:mt-0">
         <img
           src={studentbg}
@@ -38,6 +42,25 @@ const Hero = ({ isDarkMode }) => {
           className="w-1/2 lg:w-3/5 relative z-20"
         />
       </div>
+
+      {/* Custom responsive control */}
+      <style jsx>{`
+        /* Force vertical layout for mobile and mobile landscape */
+        @media (max-width: 900px) {
+          #home {
+            flex-direction: column !important;
+            text-align: center;
+          }
+        }
+
+        /* For tablets and above (horizontal layout) */
+        @media (min-width: 901px) {
+          #home {
+            flex-direction: row !important;
+            text-align: left;
+          }
+        }
+      `}</style>
     </section>
   );
 };

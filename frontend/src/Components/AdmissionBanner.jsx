@@ -38,7 +38,7 @@ const AdmissionAdCard = () => {
 
  const handleContactClick = () => {
   closeAd();
-  setTimeout(() => navigate("/contactus"), 350); // ✅ navigate to new page
+  setTimeout(() => navigate("/contact"), 350); // ✅ navigate to new page
 };
 
 

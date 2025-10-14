@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import PencilBg from "../assets/pencil.jpg"; 
 import { FaPencilAlt, FaUserGraduate, FaBaseballBall } from "react-icons/fa";
 import darkModeColors from "./DarkMode";
+import {motion} from 'framer-motion'
 
 const Card = ({ isDarkMode }) => {
   const sectionRef = useRef(null);
@@ -20,7 +21,12 @@ const Card = ({ isDarkMode }) => {
     }
   }, [location]);
   return (
-    <section ref={sectionRef}
+    <motion.section
+    initial={{opacity: 0, x:200}}
+      transition={{duration: 1}}
+      whileInView={{opacity: 1, x:0}}
+      viewport={{once: true}}
+    ref={sectionRef}
       id="second-section"
       className="bg-cover bg-center bg-fixed min-h-screen flex justify-center items-center relative"
       style={{ backgroundImage: `url(${PencilBg})` }}
@@ -92,7 +98,7 @@ const Card = ({ isDarkMode }) => {
           </p>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

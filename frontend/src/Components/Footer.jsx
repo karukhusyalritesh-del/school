@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaFacebook, FaWhatsapp, FaInstagram, FaTelegram, FaHome, FaEnvelope, FaUserTie } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
-
+import { motion } from 'framer-motion';
 const Footer = () => {
   const navigate = useNavigate();
 
@@ -42,7 +42,13 @@ const Footer = () => {
   };
 
   return (
-    <footer>
+    <motion.footer
+initial={{opacity: 0, x:-200}}
+      transition={{duration: 1}}
+      whileInView={{opacity: 1, x:0}}
+      viewport={{once: true}}
+    
+    >
       <div className="footer bg-[#263675] py-6 md:py-[30px] font-['Montserrat'] text-center" id="footer">
         
         {/* Social Media Icons Row */}
@@ -115,7 +121,7 @@ const Footer = () => {
           </p>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 

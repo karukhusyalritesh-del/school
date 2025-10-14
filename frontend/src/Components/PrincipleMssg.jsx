@@ -4,6 +4,7 @@ import principalImg from "../assets/principle.png"; // principal image
 import star from "../assets/star.png"; // star image
 import darkModeColors from "./DarkMode";
 import { useLocation } from 'react-router-dom';
+import { motion } from "framer-motion";
 
 const PrincipalMsg = ({ isDarkMode }) => {
 
@@ -23,7 +24,12 @@ const PrincipalMsg = ({ isDarkMode }) => {
   }, [location]);
 
   return (
-    <section ref={sectionRef}
+    <motion.section
+      initial={{opacity: 0, x:-200}}
+      transition={{duration: 1}}
+      whileInView={{opacity: 1, x:0}}
+      viewport={{once: true}}
+     ref={sectionRef}
       className={`min-h-screen flex justify-center items-center py-0 px-20 bg-contain max-lg:py-8 max-lg:px-4 ${
         isDarkMode ? darkModeColors.principle : "bg-white text-black"
       }`}
@@ -79,7 +85,7 @@ const PrincipalMsg = ({ isDarkMode }) => {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

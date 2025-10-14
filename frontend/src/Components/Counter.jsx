@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 
 const Counters = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -67,7 +68,11 @@ const Counters = () => {
   }, [isVisible]);
 
   return (
-    <div
+    <motion.div
+        initial={{opacity: 0, x:200}}
+      transition={{duration: 1}}
+      whileInView={{opacity: 1, x:0}}
+      viewport={{once: true}}
       ref={containerRef}
       className="flex flex-col md:flex-row flex-wrap justify-around items-center py-12 px-6 md:px-12 bg-[#263675] text-white text-center relative"
     >
@@ -87,7 +92,7 @@ const Counters = () => {
           <h3 className="mt-2 text-lg md:text-xl">{item.label}</h3>
         </div>
       ))}
-    </div>
+    </motion.div>
   );
 };
 

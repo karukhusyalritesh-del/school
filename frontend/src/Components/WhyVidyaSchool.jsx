@@ -1,6 +1,7 @@
 import React from "react";
 import { FaSchool, FaDesktop, FaBus, FaLandmark } from "react-icons/fa";
 import darkModeColors from "./DarkMode";
+import { motion } from "framer-motion";
 
 const WhyVidyaSchool = ({ isDarkMode }) => {
   const features = [
@@ -11,7 +12,11 @@ const WhyVidyaSchool = ({ isDarkMode }) => {
   ];
 
   return (
-    <section
+    <motion.section
+initial={{opacity: 0, x:-200}}
+      transition={{duration: 1}}
+      whileInView={{opacity: 1, x:0}}
+      viewport={{once: true}}
       id="approved"
       className={`font-sans py-12 px-4 transition-colors duration-500 ${
         isDarkMode ? darkModeColors.whyVidyaSchool : "bg-white text-black"
@@ -56,7 +61,7 @@ const WhyVidyaSchool = ({ isDarkMode }) => {
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

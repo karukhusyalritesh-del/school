@@ -11,6 +11,7 @@ import img6 from '../assets/flower6.png'
 import img7 from '../assets/flower7.png'
 import darkModeColors from "./DarkMode";
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 const GalleryQuoteLayout = ({ isDarkMode }) => {
    const environmentRef = useRef(null);
@@ -81,7 +82,12 @@ const GalleryQuoteLayout = ({ isDarkMode }) => {
   };
 
   return (
-    <section id="aboutSection" ref={environmentRef}
+    <motion.section
+initial={{opacity: 0, x:-200}}
+      transition={{duration: 1}}
+      whileInView={{opacity: 1, x:0}}
+      viewport={{once: true}}
+     id="aboutSection" ref={environmentRef}
       className={`w-full min-h-screen flex justify-center items-center px-4 md:px-10 lg:px-12 overflow-hidden ${
         isDarkMode ? darkModeColors.about : "bg-white text-black"
       }`}
@@ -159,7 +165,7 @@ const GalleryQuoteLayout = ({ isDarkMode }) => {
           .animate-shake { animation: shake 0.5s infinite; }
         `}</style>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

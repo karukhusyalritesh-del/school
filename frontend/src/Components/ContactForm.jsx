@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import darkModeColors from "./DarkMode"; // Import your dark mode color settings
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 const ContactUs = ({ isDarkMode }) => {
 
@@ -65,7 +66,12 @@ const ContactUs = ({ isDarkMode }) => {
   };
 
   return (
-    <section ref={sectionRef}
+    <motion.section
+        initial={{opacity: 0, x:200}}
+      transition={{duration: 1}}
+      whileInView={{opacity: 1, x:0}}
+      viewport={{once: true}}
+     ref={sectionRef}
       id="contact"
       className={`w-full py-16 transition-colors duration-500 ${
         isDarkMode ? darkModeColors.contactForm : "bg-gray-50 text-black"
@@ -227,7 +233,7 @@ const ContactUs = ({ isDarkMode }) => {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

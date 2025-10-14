@@ -5,7 +5,8 @@ import viceImg from '../assets/vice.jpg';
 import nilamImg from '../assets/nilam.jpg';
 import galImg from '../assets/gal.jpg';
 import starImg from '../assets/star.png';
-import darkModeClasses from './DarkMode'; // ✅ Import dark mode config
+import darkModeClasses from './DarkMode'; 
+import { motion } from 'framer-motion';
 
 const TeachersSlider = ({ isDarkMode }) => {
   const sectionRef = useRef(null);
@@ -174,7 +175,11 @@ const TeachersSlider = ({ isDarkMode }) => {
 
 
   return (
-    <section
+    <motion.section
+        initial={{opacity: 0, x:200}}
+      transition={{duration: 1}}
+      whileInView={{opacity: 1, x:0}}
+      viewport={{once: true}}
       ref={sectionRef}
       className={`w-full relative overflow-hidden transition-all duration-500 ${
         isDarkMode ? darkModeClasses.teacherSlider : "bg-white text-black"
@@ -262,7 +267,7 @@ const TeachersSlider = ({ isDarkMode }) => {
           </button>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

@@ -2,6 +2,7 @@ import React from "react";
 import student from "../assets/student.png";
 import studentbg from "../assets/studentbg.png";
 import darkModeColors from "./DarkMode";
+import {motion} from "framer-motion"
 
 const Hero = ({ isDarkMode }) => {
   return (
@@ -12,7 +13,12 @@ const Hero = ({ isDarkMode }) => {
       }`}
     >
       {/* Left text */}
-      <div className="flex-1 px-4 lg:px-0 mt-8 lg:mt-0 text-center lg:text-left">
+      <motion.div
+      initial={{opacity: 0, y:100}}
+      transition={{duration: 1.5}}
+      whileInView={{opacity: 1, y:0}}
+      viewport={{once: true}}
+      className="flex-1 px-4 lg:px-0 mt-8 lg:mt-0 text-center lg:text-left">
         <h1
           className={`text-3xl lg:text-5xl py-6 font-bold tracking-[2px] lg:tracking-[4px] whitespace-nowrap ${
             isDarkMode ? "text-white" : "text-[#263675]"
@@ -27,7 +33,7 @@ const Hero = ({ isDarkMode }) => {
         >
           Vidya Niketan Academy is a school that gives better education to all students. We have 10+ years of experience in teaching and taking care of children. Our school is always clean and well-managed, so students can study in a good and safe place. The students who studied here have a strong base and are doing well in higher studies. We help children learn better so they can have a good life in the future. We believe in giving every child the best start in their education journey.
         </p>
-      </div>
+      </motion.div>
 
       {/* Right image */}
       <div className="flex-1 relative flex items-center justify-center w-full lg:w-auto mt-8 lg:mt-0">

@@ -39,6 +39,10 @@ import darkModeColors from "./Components/DarkMode";
 import FeeStructure from "./Pages/FeeStructure";
 import StudentUniform from "./Pages/StudentUniform";
 import AdmissionAdCard from "./Components/AdmissionBanner";
+import Contact from "./Pages/ContactUs"; 
+
+
+
 
 // Helper component to handle layout logic
 const Layout = ({ darkMode, toggleDarkMode }) => {
@@ -46,7 +50,7 @@ const Layout = ({ darkMode, toggleDarkMode }) => {
   const hideMainNav = location.pathname === "/notice"; 
 
   return (
-    <div className="min-h-screen"> {/* Remove dark mode from global wrapper */}
+    <div className="min-h-screen"> 
       <FirstNavbar isDarkMode={darkMode} className="no-print" />
 
       {/* Only show MainNav */}
@@ -196,6 +200,17 @@ const Layout = ({ darkMode, toggleDarkMode }) => {
             </div>
           }
         />
+<Route
+  path="/contactus"
+  element={
+    <div className={darkMode ? darkModeColors.body : "bg-white text-black min-h-screen"}>
+      <Contact isDarkMode={darkMode} />
+      <Footer isDarkMode={darkMode} className="no-print" />
+    </div>
+  }
+/>
+
+
       </Routes>
 
       <FloatingMenu onToggleDarkMode={toggleDarkMode} isDarkMode={darkMode} className="no-print" />

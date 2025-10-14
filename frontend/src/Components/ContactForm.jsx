@@ -22,7 +22,7 @@ const ContactUs = ({ isDarkMode }) => {
 
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
+    phone: '',
     message: ''
   });
 
@@ -53,7 +53,7 @@ const ContactUs = ({ isDarkMode }) => {
       if (data.success) {
         setResult("Form Submitted Successfully");
         event.target.reset();
-        setFormData({ name: '', email: '', message: '' });
+        setFormData({ name: '', phone: '', message: '' });
       } else {
         console.log("Error", data);
         setResult(data.message || "Submission failed");
@@ -176,22 +176,23 @@ const ContactUs = ({ isDarkMode }) => {
                 />
               </div>
 
-              {/* Email Field */}
-              <div>
-                <label htmlFor="email" className={`block text-sm font-medium mb-2 ${isDarkMode ? "text-gray-200" : "text-gray-700"}`}>Your Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${
-                    isDarkMode ? "bg-[#1b1e3a] border-gray-600 text-white placeholder-gray-400" : "border-gray-300"
-                  }`}
-                  placeholder="Enter your email"
-                  required
-                />
-              </div>
+              {/* Phone Field */}
+<div>
+  <label htmlFor="phone" className={`block text-sm font-medium mb-2 ${isDarkMode ? "text-gray-200" : "text-gray-700"}`}>Your Phone Number</label>
+  <input
+    type="tel"
+    id="phone"
+    name="phone"
+    value={formData.phone}
+    onChange={handleChange}
+    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${
+      isDarkMode ? "bg-[#1b1e3a] border-gray-600 text-white placeholder-gray-400" : "border-gray-300"
+    }`}
+    placeholder="Enter your phone number"
+    required
+  />
+</div>
+
 
               {/* Message Field */}
               <div>

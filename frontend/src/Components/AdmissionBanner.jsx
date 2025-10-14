@@ -36,10 +36,11 @@ const AdmissionAdCard = () => {
     if (cardRef.current && !cardRef.current.contains(e.target)) closeAd();
   };
 
-  const handleContactClick = () => {
-    closeAd();
-    setTimeout(() => navigate("/contact"), 350);
-  };
+ const handleContactClick = () => {
+  closeAd();
+  setTimeout(() => navigate("/contactus"), 350); // ✅ navigate to new page
+};
+
 
   if (!isVisible) return null;
 
@@ -122,12 +123,13 @@ const AdmissionAdCard = () => {
             >
               पछि गर्नुहोस्
             </button>
-            <button
-              onClick={handleContactClick}
-              className="flex-1 bg-gradient-to-r from-[#263675] to-purple-600 text-white font-bold py-2 px-3 rounded-lg shadow hover:shadow-md transform hover:-translate-y-0.5 transition-all duration-200 cursor-pointer text-sm"
-            >
-              सम्पर्क गर्नुहोस्
-            </button>
+<button
+  onClick={handleContactClick}
+  className="flex-1 bg-gradient-to-r from-[#263675] to-purple-600 text-white font-bold py-2 px-3 rounded-lg shadow hover:shadow-md transform hover:-translate-y-0.5 transition-all duration-200 cursor-pointer text-sm"
+>
+  सम्पर्क गर्नुहोस्
+</button>
+
           </div>
           <p className="text-xs text-gray-600 text-center mt-2">
             सीमित सीट, अहिलै नै स्थान सुरक्षित गर्नुहोस्

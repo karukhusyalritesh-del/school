@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // Add this import
+import { useNavigate, Link } from "react-router-dom"; // Add this import
 import api from "../api/axios";
+import ContactUs from "../Components/ContactForm";
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -268,11 +269,17 @@ const AuthForm = () => {
       
       {/* Footer Note */}
       <div className="mt-8 p-4 max-w-md text-center text-gray-600 text-sm">
-        <p>
-          <strong>Note:</strong> To log in successfully, you must verify your email through the school. This step is required because after logging in, you will gain access to sensitive and private school information.<br/>
-          For faster verification, please contact the school by sending a message through the "Contact Us" section, which you can find in the sidebar or navbar.<br/>
-          You can also send a message through Gmail.
-        </p>
+<p>
+  <strong>Note:</strong> To log in successfully, you must verify your email through the school. This step is required because after logging in, you will gain access to sensitive and private school information.<br/>
+  For faster verification, please contact the school by sending a message by clicking this link{" "}
+  <Link
+    to="/contactus"
+    className="text-blue-600 hover:text-blue-800 underline font-medium"
+  >
+    Contact Us
+  </Link>.<br/>
+  You can also send a message through Gmail.
+</p>
       </div>
     </div>
   );

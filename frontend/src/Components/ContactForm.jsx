@@ -69,7 +69,7 @@ const ContactUs = ({ isDarkMode }) => {
     <section
      ref={sectionRef}
       id="contact"
-      className={`w-full py-16 transition-colors duration-500 ${
+      className={`w-full py-16 transition-colors duration-500 overflow-x-hidden ${
         isDarkMode ? darkModeColors.contactForm : "bg-gray-50 text-black"
       }`}
     >

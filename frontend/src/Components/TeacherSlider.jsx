@@ -177,7 +177,7 @@ const TeachersSlider = ({ isDarkMode }) => {
   return (
     <section
       ref={sectionRef}
-      className={`w-full relative overflow-hidden transition-all duration-500 ${
+      className={`w-full relative overflow-hidden transition-all duration-500 overflow-x-hidden ${
         isDarkMode ? darkModeClasses.teacherSlider : "bg-white text-black"
       }`}
       id="container-new"

@@ -14,7 +14,7 @@ const WhyVidyaSchool = ({ isDarkMode }) => {
   return (
     <section
       id="approved"
-      className={`font-sans py-12 px-4 transition-colors duration-500 ${
+      className={`font-sans py-12 px-4 transition-colors duration-500 overflow-x-hidden ${
         isDarkMode ? darkModeColors.whyVidyaSchool : "bg-white text-black"
       }`}
     >

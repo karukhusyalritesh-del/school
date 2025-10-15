@@ -70,7 +70,7 @@ const Counters = () => {
   return (
     <div
       ref={containerRef}
-      className="flex flex-col md:flex-row flex-wrap justify-around items-center py-12 px-6 md:px-12 bg-[#263675] text-white text-center relative"
+      className="flex flex-col md:flex-row flex-wrap justify-around items-center py-12 px-6 md:px-12 bg-[#263675] text-white text-center relative overflow-x-hidden"
     >
       {counterData.map((item, index) => (
         <motion.div

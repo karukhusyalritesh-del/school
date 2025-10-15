@@ -24,7 +24,7 @@ const Card = ({ isDarkMode }) => {
     <section
     ref={sectionRef}
       id="second-section"
-      className="bg-cover bg-center bg-fixed min-h-screen flex justify-center items-center relative"
+      className="bg-cover bg-center bg-fixed min-h-screen flex justify-center items-center relative overflow-x-hidden"
       style={{ backgroundImage: `url(${PencilBg})` }}
     >
       {/* Dark overlay for dark mode */}
@@ -38,10 +38,10 @@ const Card = ({ isDarkMode }) => {
 
 
       <motion.div
-       initial={{opacity: 0, x:200}}
+       initial={{opacity: 0, x:100}}
       transition={{duration: 1}}
       whileInView={{opacity: 1, x:0}}
-      viewport={{once: true}}
+      viewport={{once: true, amount: 0.3}}
        className="flex flex-wrap justify-center items-end gap-5 p-5 relative z-10">
         {/* Power Card */}
         <div

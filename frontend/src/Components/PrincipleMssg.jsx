@@ -26,7 +26,7 @@ const PrincipalMsg = ({ isDarkMode }) => {
   return (
     <section
      ref={sectionRef}
-      className={`min-h-screen flex justify-center items-center py-0 px-20 bg-contain max-lg:py-8 max-lg:px-4 ${
+      className={`min-h-screen flex justify-center items-center py-0 px-20 bg-contain max-lg:py-8 max-lg:px-4 overflow-x-hidden  ${
         isDarkMode ? darkModeColors.principle : "bg-white text-black"
       }`}
       id="third-section"

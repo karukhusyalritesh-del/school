@@ -48,7 +48,7 @@ const Footer = () => {
       transition={{duration: 1}}
       whileInView={{opacity: 1, x:0}}
       viewport={{once: true}}
-       className="footer bg-[#263675] py-6 md:py-[30px] font-['Montserrat'] text-center" id="footer">
+       className="footer bg-[#263675] py-6 md:py-[30px] font-['Montserrat'] text-center overflow-x-hidden" id="footer">
         
         {/* Social Media Icons Row */}
         <div className="row w-full my-2 md:my-[1%] py-2 md:py-[0.6%] text-white">

@@ -41,7 +41,7 @@ const Card = ({ isDarkMode }) => {
        initial={{opacity: 0, x:100}}
       transition={{duration: 1}}
       whileInView={{opacity: 1, x:0}}
-      viewport={{once: true, amount: 0.3}}
+      viewport={{once: true, amount: 0.2}}
        className="flex flex-wrap justify-center items-end gap-5 p-5 relative z-10">
         {/* Power Card */}
         <div

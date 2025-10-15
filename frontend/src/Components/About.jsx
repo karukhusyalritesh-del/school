@@ -92,7 +92,7 @@ const GalleryQuoteLayout = ({ isDarkMode }) => {
       initial={{opacity: 0, x:-200}}
       transition={{duration: 1}}
       whileInView={{opacity: 1, x:0}}
-      viewport={{once: true}}
+      viewport={{once: true, amount: 0.3}}
        className="grid grid-cols-1 lg:grid-cols-3 gap-1 lg:gap-4 items-center w-full max-w-7xl">
         
         {/* Left: Hexagonal Gallery */}

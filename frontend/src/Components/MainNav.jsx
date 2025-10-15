@@ -54,14 +54,20 @@ const MainNav = ({ isDarkMode }) => {
     document.body.style.overflow = menuOpen ? "hidden" : "auto";
   }, [menuOpen]);
 
-  const handleNav = (sectionId) => {
-    if (location.pathname !== "/") {
-      navigate("/", { state: { scrollTo: sectionId } });
-    } else {
+const handleNav = (sectionId) => {
+  if (location.pathname !== "/") {
+    navigate("/", { state: { scrollTo: sectionId } });
+    // Wait until route changes to home, then scroll
+    setTimeout(() => {
       const target = document.getElementById(sectionId);
       if (target) target.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+    }, 500);
+  } else {
+    const target = document.getElementById(sectionId);
+    if (target) target.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
 
   return (
     <nav

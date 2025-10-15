@@ -8,6 +8,7 @@ import uniform3 from '../../src/assets/uniform3.jpeg'
 import uniform4 from '../../src/assets/uniform4.jpeg'
 import uniform5 from '../../src/assets/uniform5.jpeg'
 import uniform6 from '../../src/assets/uniform6.jpeg'
+import { motion } from 'framer-motion';
 
 const StudentUniform = ({ isDarkMode }) => {
   const [isMobile, setIsMobile] = useState(false);
@@ -212,7 +213,12 @@ const StudentUniform = ({ isDarkMode }) => {
         ? "bg-[#0a0c23] text-white" 
         : "bg-gradient-to-br from-gray-50 to-blue-50 text-black"
     }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <motion.div
+            initial={{opacity: 0, x:200}}
+      transition={{duration: 1}}
+      whileInView={{opacity: 1, x:0}}
+      viewport={{once: true}}
+       className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <div className="text-center mb-16">
           <h1 className={`text-3xl font-bold mb-6 ${
@@ -270,7 +276,7 @@ const StudentUniform = ({ isDarkMode }) => {
             This will download all 8 uniform images one by one
           </p>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

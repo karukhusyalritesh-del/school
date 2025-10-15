@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import MainNav from '../Components/MainNav'; 
 import api from "../api/axios";
 import NepaliDate from "nepali-date";
+import { motion } from "framer-motion";
 
 const NoticePage = ({ isDarkMode }) => {
   const [activeCategory, setActiveCategory] = useState("Bus Notice");
@@ -74,7 +75,12 @@ const NoticePage = ({ isDarkMode }) => {
   };
 
   return (
-    <div className={`p-6 md:p-12 min-h-screen ${darkModeStyles.container}`}>
+    <motion.div
+          initial={{opacity: 0, x:200}}
+      transition={{duration: 1}}
+      whileInView={{opacity: 1, x:0}}
+      viewport={{once: true}}
+     className={`p-6 md:p-12 min-h-screen ${darkModeStyles.container}`}>
       <h1 className={`text-3xl font-bold text-center mb-8 ${isDarkMode ? "text-white" : "text-[#263675]"}`}>
         School Notices
       </h1>
@@ -143,7 +149,7 @@ const NoticePage = ({ isDarkMode }) => {
           })
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

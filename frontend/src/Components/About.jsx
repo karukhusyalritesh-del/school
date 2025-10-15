@@ -82,17 +82,18 @@ const GalleryQuoteLayout = ({ isDarkMode }) => {
   };
 
   return (
-    <motion.section
-initial={{opacity: 0, x:-200}}
-      transition={{duration: 1}}
-      whileInView={{opacity: 1, x:0}}
-      viewport={{once: true}}
+    <section
      id="aboutSection" ref={environmentRef}
       className={`w-full min-h-screen flex justify-center items-center px-4 md:px-10 lg:px-12 overflow-hidden ${
         isDarkMode ? darkModeColors.about : "bg-white text-black"
       }`}
     >
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-1 lg:gap-4 items-center w-full max-w-7xl">
+      <motion.div
+      initial={{opacity: 0, x:-200}}
+      transition={{duration: 1}}
+      whileInView={{opacity: 1, x:0}}
+      viewport={{once: true}}
+       className="grid grid-cols-1 lg:grid-cols-3 gap-1 lg:gap-4 items-center w-full max-w-7xl">
         
         {/* Left: Hexagonal Gallery */}
         <div className="flex justify-center lg:justify-start order-2 lg:order-1 py-30 sm:mt-10 lg:py-0 lg:pl-38 min-[1286px]:pl-12">
@@ -164,8 +165,8 @@ initial={{opacity: 0, x:-200}}
           }
           .animate-shake { animation: shake 0.5s infinite; }
         `}</style>
-      </div>
-    </motion.section>
+      </motion.div>
+    </section>
   );
 };
 

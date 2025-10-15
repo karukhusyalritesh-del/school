@@ -9,6 +9,8 @@
 .principal-shadow {
   box-shadow: -50px -50px 0 -40px var(--red), 50px 50px 0 -40px var(--red);
 }
-body{
+
+html, body {
+  overflow-x: hidden;
   font-family: "Outfit", sans-serif;
 }

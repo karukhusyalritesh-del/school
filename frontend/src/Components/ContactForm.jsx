@@ -66,18 +66,19 @@ const ContactUs = ({ isDarkMode }) => {
   };
 
   return (
-    <motion.section
-        initial={{opacity: 0, x:200}}
-      transition={{duration: 1}}
-      whileInView={{opacity: 1, x:0}}
-      viewport={{once: true}}
+    <section
      ref={sectionRef}
       id="contact"
       className={`w-full py-16 transition-colors duration-500 ${
         isDarkMode ? darkModeColors.contactForm : "bg-gray-50 text-black"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <motion.div
+      initial={{opacity: 0, x:200}}
+      transition={{duration: 1}}
+      whileInView={{opacity: 1, x:0}}
+      viewport={{once: true}}
+      className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2
           className={`text-3xl md:text-4xl font-bold text-center mb-12 ${
             isDarkMode ? "text-white" : "text-[#263675]"
@@ -232,8 +233,8 @@ const ContactUs = ({ isDarkMode }) => {
             </form>
           </div>
         </div>
-      </div>
-    </motion.section>
+      </motion.div>
+    </section>
   );
 };
 

@@ -21,11 +21,7 @@ const Card = ({ isDarkMode }) => {
     }
   }, [location]);
   return (
-    <motion.section
-    initial={{opacity: 0, x:200}}
-      transition={{duration: 1}}
-      whileInView={{opacity: 1, x:0}}
-      viewport={{once: true}}
+    <section
     ref={sectionRef}
       id="second-section"
       className="bg-cover bg-center bg-fixed min-h-screen flex justify-center items-center relative"
@@ -41,7 +37,12 @@ const Card = ({ isDarkMode }) => {
 )}
 
 
-      <div className="flex flex-wrap justify-center items-end gap-5 p-5 relative z-10">
+      <motion.div
+       initial={{opacity: 0, x:200}}
+      transition={{duration: 1}}
+      whileInView={{opacity: 1, x:0}}
+      viewport={{once: true}}
+       className="flex flex-wrap justify-center items-end gap-5 p-5 relative z-10">
         {/* Power Card */}
         <div
           className={`border border-gray-300 border-b-4 border-b-blue-900 rounded-xl max-w-xs w-full p-5 text-center shadow-md hover:-translate-y-1 transition-transform h-[400px] flex flex-col justify-start ${
@@ -97,8 +98,8 @@ const Card = ({ isDarkMode }) => {
             resilience, and develop a strong mindset.
           </p>
         </div>
-      </div>
-    </motion.section>
+      </motion.div>
+    </section>
   );
 };
 

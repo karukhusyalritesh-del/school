@@ -12,17 +12,18 @@ const WhyVidyaSchool = ({ isDarkMode }) => {
   ];
 
   return (
-    <motion.section
-initial={{opacity: 0, x:-200}}
-      transition={{duration: 1}}
-      whileInView={{opacity: 1, x:0}}
-      viewport={{once: true}}
+    <section
       id="approved"
       className={`font-sans py-12 px-4 transition-colors duration-500 ${
         isDarkMode ? darkModeColors.whyVidyaSchool : "bg-white text-black"
       }`}
     >
-      <div className="max-w-3xl mx-auto text-center">
+      <motion.div
+      initial={{opacity: 0, x:-200}}
+      transition={{duration: 1}}
+      whileInView={{opacity: 1, x:0}}
+      viewport={{once: true}}
+       className="max-w-3xl mx-auto text-center">
         <h1
           className={`text-4xl md:text-5xl font-bold mb-4 ${
             isDarkMode ? "text-[wheat]" : "text-[#263675]"
@@ -60,8 +61,8 @@ initial={{opacity: 0, x:-200}}
             </div>
           ))}
         </div>
-      </div>
-    </motion.section>
+      </motion.div>
+    </section>
   );
 };
 

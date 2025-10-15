@@ -175,11 +175,7 @@ const TeachersSlider = ({ isDarkMode }) => {
 
 
   return (
-    <motion.section
-        initial={{opacity: 0, x:200}}
-      transition={{duration: 1}}
-      whileInView={{opacity: 1, x:0}}
-      viewport={{once: true}}
+    <section
       ref={sectionRef}
       className={`w-full relative overflow-hidden transition-all duration-500 ${
         isDarkMode ? darkModeClasses.teacherSlider : "bg-white text-black"
@@ -195,7 +191,12 @@ const TeachersSlider = ({ isDarkMode }) => {
         Meet Our Teachers
       </h2>
 
-      <div ref={sliderRef} className="relative w-full mx-auto overflow-hidden z-10">
+      <motion.div
+      initial={{opacity: 0, x:200}}
+      transition={{duration: 1}}
+      whileInView={{opacity: 1, x:0}}
+      viewport={{once: true}}
+       ref={sliderRef} className="relative w-full mx-auto overflow-hidden z-10">
         <div
           className={`flex ${isInstant ? '' : 'transition-transform duration-500 ease-in-out'} mt-8 md:mt-20`}
           style={{ transform: `translateX(${-currentIndex * 100}%)` }}
@@ -266,8 +267,8 @@ const TeachersSlider = ({ isDarkMode }) => {
             &#10095;
           </button>
         </div>
-      </div>
-    </motion.section>
+      </motion.div>
+    </section>
   );
 };
 

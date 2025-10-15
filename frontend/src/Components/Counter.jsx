@@ -68,16 +68,16 @@ const Counters = () => {
   }, [isVisible]);
 
   return (
-    <motion.div
-        initial={{opacity: 0, x:200}}
-      transition={{duration: 1}}
-      whileInView={{opacity: 1, x:0}}
-      viewport={{once: true}}
+    <div
       ref={containerRef}
       className="flex flex-col md:flex-row flex-wrap justify-around items-center py-12 px-6 md:px-12 bg-[#263675] text-white text-center relative"
     >
       {counterData.map((item, index) => (
-        <div
+        <motion.div
+                initial={{opacity: 0, x:200}}
+      transition={{duration: 1}}
+      whileInView={{opacity: 1, x:0}}
+      viewport={{once: true}}
           key={index}
           className="flex flex-col items-center justify-center max-w-[220px] w-full md:w-auto mx-0 md:mx-4 my-4 md:my-0 relative"
         >
@@ -90,9 +90,9 @@ const Counters = () => {
             {item.suffix}
           </h1>
           <h3 className="mt-2 text-lg md:text-xl">{item.label}</h3>
-        </div>
+        </motion.div>
       ))}
-    </motion.div>
+    </div>
   );
 };
 

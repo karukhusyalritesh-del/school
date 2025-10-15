@@ -24,18 +24,19 @@ const PrincipalMsg = ({ isDarkMode }) => {
   }, [location]);
 
   return (
-    <motion.section
-      initial={{opacity: 0, x:-200}}
-      transition={{duration: 1}}
-      whileInView={{opacity: 1, x:0}}
-      viewport={{once: true}}
+    <section
      ref={sectionRef}
       className={`min-h-screen flex justify-center items-center py-0 px-20 bg-contain max-lg:py-8 max-lg:px-4 ${
         isDarkMode ? darkModeColors.principle : "bg-white text-black"
       }`}
       id="third-section"
     >
-      <div className="flex justify-between items-center w-full max-lg:flex-col max-lg:gap-8">
+      <motion.div
+            initial={{opacity: 0, x:-200}}
+      transition={{duration: 1}}
+      whileInView={{opacity: 1, x:0}}
+      viewport={{once: true}}
+      className="flex justify-between items-center w-full max-lg:flex-col max-lg:gap-8">
         {/* Text Content */}
         <div className="flex-1 max-lg:order-2">
           <h2
@@ -84,8 +85,8 @@ const PrincipalMsg = ({ isDarkMode }) => {
             </div>
           </div>
         </div>
-      </div>
-    </motion.section>
+      </motion.div>
+    </section>
   );
 };
 

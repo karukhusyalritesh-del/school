@@ -128,25 +128,44 @@ exports.forgotPassword = async (req, res) => {
     // Store OTP temporarily (expires in 10 min)
     otpStore[email] = { otp, expires: Date.now() + 10 * 60 * 1000 };
 
+    // Styled HTML version of your OTP Card
+    const htmlContent = `
+      <div style="font-family: Arial, sans-serif; background-color:#f9fafb; padding:40px 0; text-align:center;">
+        <div style="background:#ffffff; width:320px; margin:0 auto; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.1); padding:24px;">
+
+          <h2 style="color:#222; font-size:18px; margin-bottom:20px;">Vidya Niketan Academy</h2>
+
+          <div style="background:#f1f3f6; border-radius:10px; padding:12px 0; margin-bottom:12px;">
+            <p style="font-size:28px; font-family:monospace; letter-spacing:3px; font-weight:bold; color:#333;">${otp}</p>
+          </div>
+
+          <p style="font-size:14px; color:#666; margin-bottom:6px;">Password Reset OTP</p>
+          <p style="font-size:13px; color:#777;">It will expire in <b>10 minutes</b>.</p>
+        </div>
+
+        <p style="font-size:12px; color:#999; margin-top:20px;">
+          If you didn’t request this, please ignore this email.
+        </p>
+      </div>
+    `;
+
     // Send email
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: email,
       subject: 'Your OTP for password reset',
-      text: `Your OTP is: ${otp}. It will expire in 10 minutes.`
+      html: htmlContent,
     };
-    console.log("Sending OTP email to:", email);
 
     await transporter.sendMail(mailOptions);
 
-    res.json({ message: 'OTP sent to your email' });
+    res.json({ message: 'OTP card sent to your email' });
   } catch (err) {
     console.error("Forgot password error:", err);
-
-    console.error(err);
     res.status(500).json({ message: 'Server error' });
   }
 };
+
 
 // Add this new function to verify OTP
 exports.verifyOtp = async (req, res) => {

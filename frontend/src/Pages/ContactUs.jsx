@@ -53,7 +53,8 @@ const Contact = ({ isDarkMode }) => {
       className={`min-h-screen flex items-center justify-center p-6 transition-all duration-300 ${
         isDarkMode
           ? "bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white"
-          : "bg-gradient-to-br from-blue-100 to-indigo-200 text-gray-900"
+          : "bg-gray-100 text-gray-900"
+
       }`}
     >
       <form
@@ -89,12 +90,12 @@ const Contact = ({ isDarkMode }) => {
 
         <div className="mb-4">
           <label className={`block font-medium mb-2 ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>
-            Email
+            Registered Email
           </label>
           <input
             type="email"
             name="email"
-            placeholder="Your Email"
+            placeholder="Enter your registered email"
             value={formData.email}
             onChange={handleChange}
             required

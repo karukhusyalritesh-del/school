@@ -44,7 +44,7 @@ const PrincipalMsg = ({ isDarkMode }) => {
               isDarkMode ? "text-white" : "text-[#263675]"
             }`}
           >
-            <FaGraduationCap className="mr-2.5 max-lg:text-2xl" /> Words From Founder
+            <FaGraduationCap className="mr-2.5 max-lg:text-2xl" /> Words From Principle
           </h2>
           <p
             className={`font-albert text-xl pt-8 pr-8 leading-relaxed max-lg:text-base max-lg:pt-4 max-lg:pr-0 max-lg:text-justify ${
@@ -52,7 +52,7 @@ const PrincipalMsg = ({ isDarkMode }) => {
             }`}
           >
             I hope you all had a wonderful break and are ready to dive into an exciting and productive new school
-            year. My name is Rundi Prasad Chaudhary, and I am honored to be your founder. First, I want to
+            year. My name is Rundi Prasad Chaudhary, and I am honored to be your principle. First, I want to
             extend a warm welcome to our new students and a welcome back to our returning ones. Each one of you is a
             valued member of our school community, and I am thrilled to see all the eager faces ready to learn and
             grow. Here at Vidya Niketan Academy, we believe in creating an environment where everyone feels safe,

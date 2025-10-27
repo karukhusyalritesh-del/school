@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom"; // Add this import
+import { useNavigate, Link } from "react-router-dom";
 import api from "../api/axios";
 import ContactUs from "../Components/ContactForm";
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [isForgot, setIsForgot] = useState(false);
-  const [showOtpVerification, setShowOtpVerification] = useState(false); // New state
+  const [showOtpVerification, setShowOtpVerification] = useState(false);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("");
-  const navigate = useNavigate(); // Add navigate
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
-    otp: "" // Add OTP field
+    otp: ""
   });
 
   // Check if user is already logged in on component mount
@@ -229,31 +229,40 @@ const AuthForm = () => {
           </button>
         </form>
 
-        <div className="mt-4 text-center space-x-2">
-          {!isForgot && !showOtpVerification && (
-            <>
+        <div className="mt-4 text-center text-sm">
+          {!isForgot && !showOtpVerification && isLogin && (
+            <div className="flex justify-between">
               <button
                 className="text-blue-600 hover:underline cursor-pointer"
                 onClick={() => {
-                  setIsLogin(!isLogin);
+                  setIsLogin(false);
                   handleModeSwitch();
                 }}
               >
-                {isLogin ? "Sign Up" : "Login"}
+                Sign Up
               </button>
+              <button
+                className="text-blue-600 hover:underline cursor-pointer"
+                onClick={() => {
+                  setIsForgot(true);
+                  setShowOtpVerification(false);
+                }}
+              >
+                Forgot Password?
+              </button>
+            </div>
+          )}
 
-              {isLogin && (
-                <button
-                  className="text-blue-600 hover:underline cursor-pointer"
-                  onClick={() => {
-                    setIsForgot(true);
-                    setShowOtpVerification(false);
-                  }}
-                >
-                  Forgot Password?
-                </button>
-              )}
-            </>
+          {!isForgot && !showOtpVerification && !isLogin && (
+            <button
+              className="text-blue-600 hover:underline cursor-pointer"
+              onClick={() => {
+                setIsLogin(true);
+                handleModeSwitch();
+              }}
+            >
+              Already have an account? Login
+            </button>
           )}
 
           {(isForgot || showOtpVerification) && (
@@ -269,17 +278,17 @@ const AuthForm = () => {
       
       {/* Footer Note */}
       <div className="mt-8 p-4 max-w-md text-center text-gray-600 text-sm">
-<p>
-  <strong>Note:</strong> To log in successfully, you must verify your email through the school. This step is required because after logging in, you will gain access to sensitive and private school information.<br/>
-  For faster verification, please contact the school by sending a message by clicking this link{" "}
-  <Link
-    to="/contactus"
-    className="text-blue-600 hover:text-blue-800 underline font-medium"
-  >
-    Contact Us
-  </Link>.<br/>
-  You can also send a message through Gmail.
-</p>
+        <p>
+          <strong>Note:</strong> To log in successfully, you must verify your email through the school. This step is required because after logging in, you will gain access to sensitive and private school information.<br/>
+          For faster verification, please contact the school by sending a message by clicking this link{" "}
+          <Link
+            to="/contactus"
+            className="text-blue-600 hover:text-blue-800 underline font-medium"
+          >
+            Contact Us
+          </Link>.<br/>
+          You can also send a message through Gmail.
+        </p>
       </div>
     </div>
   );

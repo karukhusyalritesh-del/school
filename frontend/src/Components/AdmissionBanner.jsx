@@ -69,9 +69,9 @@ const AdmissionAdCard = () => {
         {/* Header */}
         <div className="bg-gradient-to-r from-[#263675] to-purple-700 text-white p-4 rounded-t-xl text-center">
           <h1 className="text-xl font-bold text-yellow-300 mb-1">
-            प्रवेश खुल्यो २०२५
+            प्रवेश खुल्यो २०२६
           </h1>
-          <p className="text-base font-semibold">Admission Open 2025</p>
+          <p className="text-base font-semibold">Admission Open 2026</p>
         </div>
 
         {/* Content */}

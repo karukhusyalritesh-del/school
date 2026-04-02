@@ -108,7 +108,7 @@ const Footer = () => {
         {/* Copyright Row */}
         <div className="row w-full my-2 md:my-[1%] py-2 md:py-[0.6%] text-white px-4">
           <p className="text-xs sm:text-sm md:text-[0.8em] leading-relaxed">
-            Vidya Niketan Academy Copyright © 2025 - All rights reserved
+            Vidya Niketan Academy Copyright © 2026 - All rights reserved
             <br className="block sm:hidden" />
             <span className="hidden sm:inline"> || </span>
             Developed By: Ritesh Chaudhary
